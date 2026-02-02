@@ -327,10 +327,7 @@ export default function TermsOfServicePage() {
                     Arrowsphere Holdings Limited
                   </p>
                   <p className="mb-1 text-base text-stone-600">
-                    Dubai International Financial Centre
-                  </p>
-                  <p className="mb-1 text-base text-stone-600">
-                    Dubai, United Arab Emirates
+                    Level 1, Innovation One, DIFC, Dubai, UAE
                   </p>
                   <p className="mt-4 text-base text-stone-600">
                     For inquiries, please use the contact information provided

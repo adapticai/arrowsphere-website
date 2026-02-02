@@ -118,15 +118,15 @@ export default function Footer() {
               Contact
             </span>
             <a
-              href="mailto:contact@arrowsphere.holdings"
+              href="mailto:contact@arrowsphere.co"
               className="font-body-refined text-foreground/50 hover:text-foreground transition-colors duration-500 block mb-4"
             >
-              contact@arrowsphere.holdings
+              contact@arrowsphere.co
             </a>
             <span className="font-body-refined text-foreground/30 block">
-              Dubai International
+              Level 1, Innovation One
               <br />
-              Financial Centre
+              DIFC, Dubai, UAE
             </span>
           </div>
         </div>

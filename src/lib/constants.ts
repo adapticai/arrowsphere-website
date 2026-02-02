@@ -88,7 +88,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     ],
     socialLinks: [
       { platform: "linkedin", url: "https://linkedin.com/in/bronwynleong" },
-      { platform: "email", url: "mailto:bronwyn@arrowsphere.com" },
+      { platform: "email", url: "mailto:contact@arrowsphere.co" },
     ],
     expertise: [
       "Operational Systems Design",
@@ -218,34 +218,34 @@ export const THESIS_PILLARS: ThesisPillar[] = [
 export const COMPANY_INFO: CompanyInfo = {
   legalName: "Arrowsphere Holdings Limited",
   foundingYear: 2024,
-  jurisdiction: "Dubai International Financial Centre (DIFC)",
+  jurisdiction: "DIFC",
   type: "Private Family Office",
-  headquarters: "Dubai International Financial Centre, United Arab Emirates",
+  headquarters: "Level 1, Innovation One, DIFC, Dubai, UAE",
 };
 
 export const SOCIAL_LINKS: SocialLinks = {
   twitter: "https://twitter.com/arrowsphere",
   linkedin: "https://linkedin.com/company/arrowsphere",
   github: "https://github.com/arrowsphere",
-  email: "mailto:hello@arrowsphere.com",
+  email: "mailto:contact@arrowsphere.co",
 };
 
 export const CONTACT_INFO: ContactInfo[] = [
   {
     type: "email",
-    value: "hello@arrowsphere.com",
+    value: "contact@arrowsphere.co",
     icon: "mail",
     label: "Email Us",
   },
   {
     type: "email",
-    value: "stewardship@arrowsphere.com",
+    value: "contact@arrowsphere.co",
     icon: "briefcase",
     label: "Stewardship Capital Inquiries",
   },
   {
     type: "address",
-    value: "Dubai International Financial Centre, United Arab Emirates",
+    value: "Level 1, Innovation One, DIFC, Dubai, UAE",
     icon: "map-pin",
     label: "Headquarters",
   },

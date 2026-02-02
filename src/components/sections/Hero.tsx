@@ -98,7 +98,7 @@ export default function Hero() {
             {/* Location */}
             <div className="hidden sm:block text-right">
               <span className="font-display-whisper text-foreground/30">
-                Dubai International Financial Centre
+                Level 1, Innovation One, DIFC, Dubai, UAE
               </span>
             </div>
           </div>

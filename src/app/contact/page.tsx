@@ -102,10 +102,10 @@ export default function ContactPage() {
                   </span>
                   <div className="space-y-4">
                     <p className="text-foreground/70">
-                      Dubai International Financial Centre
+                      Level 1, Innovation One
                     </p>
                     <p className="text-foreground/50 text-sm">
-                      Dubai, United Arab Emirates
+                      DIFC, Dubai, UAE
                     </p>
                   </div>
 

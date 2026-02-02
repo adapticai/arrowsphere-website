@@ -531,18 +531,15 @@ export default function PrivacyPolicyPage() {
                     Arrowsphere Holdings Limited
                   </p>
                   <p className="mb-1 text-base text-stone-600">
-                    Dubai International Financial Centre (DIFC)
-                  </p>
-                  <p className="mb-1 text-base text-stone-600">
-                    Dubai, United Arab Emirates
+                    Level 1, Innovation One, DIFC, Dubai, UAE
                   </p>
                   <p className="mt-4 text-base text-stone-600">
                     Email:{" "}
                     <a
-                      href="mailto:privacy@arrowsphere.com"
+                      href="mailto:contact@arrowsphere.co"
                       className="text-stone-900 underline hover:text-stone-700"
                     >
-                      privacy@arrowsphere.com
+                      contact@arrowsphere.co
                     </a>
                   </p>
                 </div>
