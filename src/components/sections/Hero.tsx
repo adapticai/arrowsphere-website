@@ -24,7 +24,7 @@ export default function Hero() {
       </div>
 
       {/* Main Content */}
-      <div className="container-luxury relative z-10 pt-32 pb-20">
+      <div className="container-luxury relative z-10 pt-32 pb-8">
         {/* Eyebrow */}
         <div className="animate-reveal mb-16">
           <span className="font-display-whisper text-foreground/50">
@@ -83,10 +83,12 @@ export default function Hero() {
             </span>
           </Link>
         </div>
+      </div>
 
-        {/* Bottom Info Row */}
-        <div className="absolute bottom-12 left-0 right-0 container-luxury">
-          <div className="flex items-end justify-between border-t border-border/30 pt-8">
+      {/* Bottom Info Row - Separate from main content to prevent overlap */}
+      <div className="absolute bottom-0 left-0 right-0 z-10">
+        <div className="container-luxury">
+          <div className="flex items-end justify-between border-t border-border/30 py-8">
             {/* Scroll Indicator */}
             <div className="flex items-center gap-4 text-foreground/30">
               <div className="w-px h-12 bg-foreground/30 animate-pulse" />
