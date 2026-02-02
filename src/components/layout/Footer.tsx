@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CookiePreferencesButton } from "@/components/CookieConsent";
 
 interface NavigationLink {
   name: string;
@@ -151,6 +152,7 @@ export default function Footer() {
                   {link.name}
                 </Link>
               ))}
+              <CookiePreferencesButton />
               <span className="font-display-whisper text-foreground/30">
                 DIFC Incorporated
               </span>

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { CookieConsentProvider } from "@/components/CookieConsentProvider";
+import { CookieConsent } from "@/components/CookieConsent";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 // Primary sans-serif - clean, modern, luxury
@@ -81,7 +84,20 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${cormorant.variable} antialiased`}>
         <ThemeProvider defaultTheme="system" storageKey="arrowsphere-theme">
-          {children}
+          <CookieConsentProvider>
+            {children}
+            <CookieConsent />
+            <Toaster
+              position="bottom-right"
+              toastOptions={{
+                classNames: {
+                  toast: "font-body-refined bg-card border-border",
+                  title: "font-nav text-foreground",
+                  description: "text-foreground/60",
+                },
+              }}
+            />
+          </CookieConsentProvider>
         </ThemeProvider>
       </body>
     </html>
