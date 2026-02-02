@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface NavigationItem {
   name: string;
@@ -77,27 +78,36 @@ export default function Header() {
                   />
                 </Link>
               ))}
+
+              {/* Theme Toggle - Desktop */}
+              <ThemeToggle />
             </nav>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden relative w-8 h-8 flex flex-col justify-center items-center gap-1.5"
-              aria-label="Toggle menu"
-            >
-              <span
-                className={cn(
-                  "w-6 h-px bg-foreground transition-all duration-500",
-                  isOpen && "rotate-45 translate-y-[4px]",
-                )}
-              />
-              <span
-                className={cn(
-                  "w-6 h-px bg-foreground transition-all duration-500",
-                  isOpen && "-rotate-45 -translate-y-[4px]",
-                )}
-              />
-            </button>
+            {/* Mobile: Theme Toggle + Menu Button */}
+            <div className="lg:hidden flex items-center gap-2">
+              <ThemeToggle />
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="relative w-10 h-10 flex flex-col justify-center items-center gap-1.5"
+                aria-label="Toggle menu"
+                aria-expanded={isOpen}
+              >
+                <span
+                  className={cn(
+                    "w-6 h-px bg-foreground transition-all duration-500",
+                    isOpen && "rotate-45 translate-y-[4px]",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "w-6 h-px bg-foreground transition-all duration-500",
+                    isOpen && "-rotate-45 -translate-y-[4px]",
+                  )}
+                />
+              </button>
+            </div>
           </div>
         </div>
       </header>
