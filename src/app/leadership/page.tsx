@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Leadership | Arrowsphere Holdings",
   description:
-    "Meet the visionaries behind Arrowsphere Holdings - leaders who bridge technology, capital, and collective prosperity to shape an AI-native economy.",
+    "Meet the leadership behind Arrowsphere Holdings — bridging technology, capital, and collective prosperity to shape an AI-born economy.",
 };
 
 interface LeaderProfile {
@@ -24,7 +24,7 @@ interface LeaderProfile {
 const leaders: LeaderProfile[] = [
   {
     name: "Mehran Granfar",
-    title: "Founder & Chairman",
+    title: "General Partner",
     initials: "MG",
     quote:
       "The question isn't whether to adopt AI but what values to encode. When three people can orchestrate what once required thousands, the choice between concentration and distribution shapes the next century.",
@@ -48,17 +48,17 @@ const leaders: LeaderProfile[] = [
   },
   {
     name: "Bronwyn Leong",
-    title: "Director",
+    title: "Managing Partner",
     initials: "BL",
     quote:
       "Individual prosperity is inseparable from collective flourishing. That's not ideology—it's architecture.",
     bio: [
-      "Bronwyn Leong serves as Director of Arrowsphere Holdings Limited, bringing deep expertise in governance structures and the philanthropic frameworks essential to realizing the vision of collective prosperity in an AI-native economy.",
+      "Bronwyn Leong serves as Managing Partner of Arrowsphere Holdings Limited, bringing deep expertise in governance structures and the philanthropic frameworks essential to realizing the vision of collective prosperity in an AI-born economy.",
       "As Co-Founder of the Foundation for Collective Prosperity, Inc., Bronwyn has been instrumental in building the institutional architecture that translates stewardship principles into actionable programs and measurable impact.",
       "Through her dual roles at Arrowsphere and the Foundation, Bronwyn ensures coherence between commercial innovation and philanthropic purpose.",
     ],
     roles: [
-      { title: "Director", organization: "Arrowsphere Holdings" },
+      { title: "Managing Partner", organization: "Arrowsphere Holdings" },
       {
         title: "Co-Founder",
         organization: "Foundation for Collective Prosperity",

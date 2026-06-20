@@ -59,6 +59,8 @@ const thesisSections: ThesisSection[] = [
       "This isn't about charity—it's about architecture. Embedding distribution into reward functions. Encoding stakeholder value into governance structures. Building ownership models that include employees, users, and communities from inception.",
       "Stewardship isn't a constraint on returns—it's a framework for building more resilient, defensible, valuable companies in an age of increasing scrutiny on how technology platforms distribute power.",
     ],
+    pullQuote:
+      "The model is proven at scale: Patagonia, Bosch, and Carl Zeiss are all steward-owned — competitive companies whose ownership is structured so that mission cannot be sold away.",
   },
   {
     number: "04",
@@ -67,7 +69,7 @@ const thesisSections: ThesisSection[] = [
     content: [
       "AI-Born Architecture: Machine Core + Human Cortex. AI handles pattern recognition, optimization, and execution at scale. Humans provide judgment, ethics, creativity, and strategic direction.",
       "Founders Who Ask 'For Whom?': Not just 'how much?' but 'for whom?' Founders who understand that the question of value distribution is as important as value creation.",
-      "Ownership Structures Beyond Shareholders: Employee ownership. User ownership. Community ownership. Governance structures that include stakeholders beyond capital providers.",
+      "Ownership Structures Beyond Shareholders: Concrete instruments, encoded at founding — purpose trusts, golden shares, asset locks, redeemable non-voting shares — that bring employees, users, and communities into ownership and keep mission control from being sold away later.",
       "Decade-Scale Time Horizons: Building enduring institutions, not exit vehicles. Patient capital that measures success in decades, not quarters.",
     ],
   },

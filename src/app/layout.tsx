@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "fintech",
     "DIFC",
     "stewardship capital",
-    "AI-native",
+    "AI-born",
   ],
   authors: [{ name: "Arrowsphere Holdings Limited" }],
   openGraph: {

@@ -265,7 +265,7 @@ export default function AboutPage() {
                   Mehran Granfar
                 </h3>
                 <span className="font-display-whisper text-foreground/40 block mb-8">
-                  Co-Founder & AI Thought Leader
+                  General Partner
                 </span>
 
                 <div className="space-y-6">
@@ -289,7 +289,7 @@ export default function AboutPage() {
                   Bronwyn Leong
                 </h3>
                 <span className="font-display-whisper text-foreground/40 block mb-8">
-                  Co-Founder & Director
+                  Managing Partner
                 </span>
 
                 <div className="space-y-6">

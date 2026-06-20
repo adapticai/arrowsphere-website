@@ -36,7 +36,7 @@ const holdings: PortfolioHolding[] = [
     id: "foundation",
     name: "Foundation for Collective Prosperity",
     category: "Philanthropy",
-    description: "501(c)(3) fostering collective identity and prosperity",
+    description: "501(c)(3) funding education and community capacity",
     role: "Co-Founder",
   },
 ];

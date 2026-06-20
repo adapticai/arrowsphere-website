@@ -57,14 +57,15 @@ export default function FoundationPreview() {
 
             {/* Mission Quote */}
             <blockquote className="font-quote text-xl lg:text-2xl text-foreground/70 mb-12 border-l border-foreground/20 pl-6">
-              "Fostering the collective identity and prosperity of humanity"
+              Funding education and human capacity, so the prosperity of the
+              AI-Born transition is broadly shared.
             </blockquote>
 
             {/* Focus Area */}
             <p className="font-body-refined text-foreground/50 mb-12">
-              Education as the cultivation of capacities—to investigate reality,
-              think systematically about social change, and collaborate in
-              service to the common good.
+              Where Arrowsphere invests in how companies are built, the Foundation
+              works on how the gains are shared — funding education, formation, and
+              community capacity.
             </p>
 
             {/* Founders */}

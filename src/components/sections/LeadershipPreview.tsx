@@ -13,13 +13,13 @@ const leaders: LeaderProfile[] = [
   {
     id: "mehran-granfar",
     name: "Mehran Granfar",
-    title: "Founder & Chairman",
+    title: "General Partner",
     quote: "The question isn't whether to adopt AI but what values to encode.",
   },
   {
     id: "bronwyn-leong",
     name: "Bronwyn Leong",
-    title: "Director",
+    title: "Managing Partner",
     quote: "Individual prosperity is inseparable from collective flourishing.",
   },
 ];

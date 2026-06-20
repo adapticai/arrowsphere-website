@@ -138,7 +138,7 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             {/* Copyright */}
             <span className="font-display-whisper text-foreground/30">
-              © 2025 Arrowsphere Holdings Limited
+              © {new Date().getFullYear()} Arrowsphere Holdings Limited
             </span>
 
             {/* Legal Links */}

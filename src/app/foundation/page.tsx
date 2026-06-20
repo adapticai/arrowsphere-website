@@ -5,19 +5,14 @@ import Footer from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Foundation | Arrowsphere Holdings",
   description:
-    "A New York-based 501(c)(3) private foundation fostering the collective identity and prosperity of humanity through education, arts, and community development.",
+    "The Foundation for Collective Prosperity is the philanthropic counterpart to Arrowsphere — a New York private foundation that funds education and community capacity so the prosperity of the AI-Born transition is broadly shared.",
   openGraph: {
     title: "Foundation for Collective Prosperity | Arrowsphere Holdings",
     description:
-      "Fostering the collective identity and prosperity of humanity through strategic philanthropy and community capacity building.",
+      "Arrowsphere's affiliated private foundation, funding education and community capacity for a broadly shared prosperity.",
     type: "website",
   },
 };
-
-interface GuidingPrinciple {
-  title: string;
-  description: string;
-}
 
 interface FocusArea {
   number: string;
@@ -25,69 +20,24 @@ interface FocusArea {
   description: string;
 }
 
-const guidingPrinciples: GuidingPrinciple[] = [
-  {
-    title: "The Inherent Oneness of Humankind",
-    description:
-      "Humanity constitutes one interconnected family, united by our shared aspirations and common destiny.",
-  },
-  {
-    title: "The Twofold Nature of Human Reality",
-    description:
-      "Human beings possess both material and spiritual dimensions, requiring holistic approaches to development.",
-  },
-  {
-    title: "The Central Role of Education",
-    description:
-      "Education serves as the primary vehicle for transformation—cultivating capacities to investigate reality and collaborate in service.",
-  },
-  {
-    title: "The Power of Arts to Unite",
-    description:
-      "The arts speak a universal language that transcends barriers, celebrating our shared humanity.",
-  },
-  {
-    title: "Pursuing Sustainable Development",
-    description:
-      "True progress serves both present and future generations, ensuring lasting benefits for those who follow.",
-  },
-  {
-    title: "Maintaining Impartiality",
-    description:
-      "We operate free from political affiliation, guided solely by our commitment to collective well-being.",
-  },
-];
-
 const focusAreas: FocusArea[] = [
   {
     number: "01",
-    title: "Training Institutes",
+    title: "Education & Formation",
     description:
-      "Building capacity for community service and grassroots action through educational institutions.",
+      "Learning that develops judgment and character, not only skills — the human capabilities that matter most as machines absorb routine work.",
   },
   {
     number: "02",
-    title: "Educational Facilities",
+    title: "Community Capacity",
     description:
-      "Establishing schools that unite intellectual excellence with moral and spiritual development.",
+      "Strengthening the capacity of communities to author their own development, so progress is built with people rather than delivered to them.",
   },
   {
     number: "03",
-    title: "Education Fund",
+    title: "The Arts & Common Life",
     description:
-      "Expanding access to quality education for underserved communities worldwide.",
-  },
-  {
-    number: "04",
-    title: "Unifying Arts Fund",
-    description:
-      "Supporting artists and cultural initiatives that celebrate human unity.",
-  },
-  {
-    number: "05",
-    title: "Social Action Fund",
-    description:
-      "Empowering grassroots initiatives that strengthen community bonds.",
+      "Supporting the cultural and civic fabric — the arts, mutual aid, and the shared spaces on which other forms of progress depend.",
   },
 ];
 
@@ -114,7 +64,8 @@ export default function FoundationPage() {
               </h1>
 
               <blockquote className="font-quote text-foreground/60 max-w-2xl border-l border-foreground/20 pl-8">
-                "Fostering the collective identity and prosperity of humanity"
+                Funding education and human capacity, so the prosperity of the
+                AI-Born transition is broadly shared.
               </blockquote>
             </div>
           </div>
@@ -128,70 +79,37 @@ export default function FoundationPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
               <div className="lg:col-span-4">
                 <span className="font-display-whisper text-foreground/40 block mb-6">
-                  Our Mission
+                  The Distribution Side
                 </span>
                 <h2 className="text-3xl lg:text-4xl font-light text-foreground tracking-tight">
-                  Investing in Human Formation
+                  Where the Gains Are Shared
                 </h2>
               </div>
 
               <div className="lg:col-span-7 lg:col-start-6">
                 <div className="space-y-8">
                   <p className="text-xl lg:text-2xl font-light text-foreground/70">
-                    The Foundation represents the philanthropic dimension of the
-                    Arrowsphere mission.
+                    The Foundation for Collective Prosperity is the philanthropic
+                    counterpart to Arrowsphere — an independent New York 501(c)(3),
+                    governed on its own terms.
                   </p>
 
                   <p className="font-body-refined text-foreground/60">
-                    As humanity navigates the AI-Born transition, we invest in
-                    human formation and community capacity building. Our work
-                    centers on education—not merely as instruction, but as the
-                    cultivation of capacities to investigate reality, think
-                    systematically about social change, and collaborate in
-                    service to the common good.
+                    Where Arrowsphere invests in how companies are built, the
+                    Foundation works on how the gains are shared. It funds
+                    education, the formation of judgment and character, and the
+                    capacity of communities to take part in the prosperity that
+                    intelligent machines create.
                   </p>
 
                   <p className="font-body-refined text-foreground/60">
-                    We support communities in building the infrastructure of
-                    learning and service that enables people to shape their own
-                    development and navigate times of profound transformation
-                    with agency and purpose.
+                    Its work is funded, in significant part, by the value created
+                    in the ventures Arrowsphere backs — a deliberate architecture
+                    in which a share of what these systems produce is directed back
+                    to the wider community, rather than concentrated in a few hands.
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Guiding Principles */}
-        <section className="section-padding bg-background">
-          <div className="container-luxury">
-            <div className="mb-24">
-              <span className="font-display-whisper text-foreground/40 block mb-6">
-                What Guides Us
-              </span>
-              <h2 className="text-3xl lg:text-4xl font-light text-foreground tracking-tight max-w-2xl">
-                Guiding Principles
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border/30">
-              {guidingPrinciples.map((principle, index) => (
-                <div
-                  key={index}
-                  className="bg-background p-10 group hover:bg-muted/30 transition-colors duration-500"
-                >
-                  <span className="font-numbers text-4xl font-extralight text-foreground/10 block mb-6">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="text-lg font-light text-foreground mb-4 tracking-tight">
-                    {principle.title}
-                  </h3>
-                  <p className="font-body-refined text-foreground/50 text-sm">
-                    {principle.description}
-                  </p>
-                </div>
-              ))}
             </div>
           </div>
         </section>
@@ -214,7 +132,7 @@ export default function FoundationPage() {
                     Human Formation
                   </span>
                   <p className="text-background/50 text-sm">
-                    Investing in capacities for the AI age
+                    Investing in the capabilities the AI age rewards
                   </p>
                 </div>
                 <div>
@@ -222,15 +140,15 @@ export default function FoundationPage() {
                     Community Capacity
                   </span>
                   <p className="text-background/50 text-sm">
-                    Building infrastructure for agency
+                    Building the ground on which agency stands
                   </p>
                 </div>
                 <div>
                   <span className="font-display-whisper text-background/30 block mb-4">
-                    Collective Well-Being
+                    Shared Prosperity
                   </span>
                   <p className="text-background/50 text-sm">
-                    Navigating displacement together
+                    Widening who takes part in the gains
                   </p>
                 </div>
               </div>
@@ -243,7 +161,7 @@ export default function FoundationPage() {
           <div className="container-luxury">
             <div className="mb-24">
               <span className="font-display-whisper text-foreground/40 block mb-6">
-                Strategic Initiatives
+                What It Funds
               </span>
               <h2 className="text-3xl lg:text-4xl font-light text-foreground tracking-tight">
                 Focus Areas
@@ -281,8 +199,54 @@ export default function FoundationPage() {
           </div>
         </section>
 
-        {/* Founders */}
+        {/* Visit the Foundation */}
         <section className="section-padding-sm bg-muted/20">
+          <div className="container-luxury">
+            <div className="max-w-3xl mx-auto text-center">
+              <span className="font-display-whisper text-foreground/40 block mb-8">
+                An Independent Foundation
+              </span>
+
+              <h2 className="text-2xl lg:text-3xl font-light text-foreground mb-8 tracking-tight">
+                The Foundation keeps its own home
+              </h2>
+
+              <p className="font-body-refined text-foreground/60 mb-12">
+                The Foundation for Collective Prosperity is governed independently
+                and publishes its principles, commitments, and grantmaking at its
+                own site.
+              </p>
+
+              <a
+                href="https://collectiveprosperity.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-4 font-nav text-foreground hover:text-foreground/70 transition-all duration-500"
+              >
+                <span className="relative">
+                  Visit collectiveprosperity.org
+                  <span className="absolute bottom-0 left-0 w-full h-px bg-foreground transition-transform duration-500 origin-left group-hover:scale-x-0" />
+                </span>
+                <svg
+                  className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Founders */}
+        <section className="section-padding-sm bg-background">
           <div className="container-luxury">
             <div className="text-center mb-16">
               <span className="font-display-whisper text-foreground/40 block mb-6">
@@ -328,7 +292,7 @@ export default function FoundationPage() {
         </section>
 
         {/* Closing */}
-        <section className="section-padding bg-background">
+        <section className="section-padding bg-muted/20">
           <div className="container-luxury">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-2xl lg:text-3xl font-light text-foreground mb-8 tracking-tight">
@@ -336,9 +300,9 @@ export default function FoundationPage() {
               </h2>
 
               <p className="font-body-refined text-foreground/60 mb-12">
-                The Foundation works to strengthen the bonds of community,
-                cultivate human potential, and build the capacities needed to
-                navigate profound change with wisdom, unity, and shared purpose.
+                The Foundation works to strengthen the fabric of community, develop
+                human potential, and build the capacities people need to navigate
+                profound change with clarity and shared purpose.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-8">
