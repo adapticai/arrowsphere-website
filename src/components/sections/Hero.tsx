@@ -72,16 +72,6 @@ export default function Hero() {
               />
             </svg>
           </Link>
-
-          <Link
-            href="/portfolio"
-            className="group inline-flex items-center gap-4 font-nav text-foreground/50 hover:text-foreground transition-all duration-500"
-          >
-            <span className="relative">
-              View Portfolio
-              <span className="absolute bottom-0 left-0 w-0 h-px bg-foreground transition-all duration-500 group-hover:w-full" />
-            </span>
-          </Link>
         </div>
       </div>
 

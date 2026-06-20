@@ -201,16 +201,6 @@ export default function ThesisPage() {
                 >
                   Get in Touch
                 </Link>
-
-                <Link
-                  href="/portfolio"
-                  className="group inline-flex items-center gap-4 font-nav text-background/50 hover:text-background transition-all duration-500"
-                >
-                  <span className="relative">
-                    View Portfolio
-                    <span className="absolute bottom-0 left-0 w-0 h-px bg-background transition-all duration-500 group-hover:w-full" />
-                  </span>
-                </Link>
               </div>
             </div>
           </div>

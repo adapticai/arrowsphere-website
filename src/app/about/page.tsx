@@ -327,16 +327,6 @@ export default function AboutPage() {
                 <Link href="/contact" className="btn-luxury text-foreground">
                   Start a Conversation
                 </Link>
-
-                <Link
-                  href="/portfolio"
-                  className="group inline-flex items-center gap-4 font-nav text-foreground/50 hover:text-foreground transition-all duration-500"
-                >
-                  <span className="relative">
-                    View Our Portfolio
-                    <span className="absolute bottom-0 left-0 w-0 h-px bg-foreground transition-all duration-500 group-hover:w-full" />
-                  </span>
-                </Link>
               </div>
             </div>
           </div>

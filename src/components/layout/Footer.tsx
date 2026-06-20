@@ -13,17 +13,9 @@ interface SocialLink {
 
 const navigationLinks: NavigationLink[] = [
   { name: "Thesis", href: "/thesis" },
-  { name: "Portfolio", href: "/portfolio" },
   { name: "Leadership", href: "/leadership" },
   { name: "Foundation", href: "/foundation" },
   { name: "Contact", href: "/contact" },
-];
-
-const holdingsLinks: NavigationLink[] = [
-  { name: "Adaptic Holdings", href: "/portfolio#adaptic" },
-  { name: "Future Thesis Lab", href: "/portfolio#future-thesis" },
-  { name: "AI-Born", href: "/portfolio#ai-born" },
-  { name: "Foundation for Collective Prosperity", href: "/foundation" },
 ];
 
 const socialLinks: SocialLink[] = [
@@ -93,27 +85,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Holdings */}
-          <div className="lg:col-span-3">
-            <span className="font-display-whisper text-foreground/30 block mb-8">
-              Holdings
-            </span>
-            <ul className="space-y-4">
-              {holdingsLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="font-body-refined text-foreground/50 hover:text-foreground transition-colors duration-500"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Contact */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 lg:col-start-10">
             <span className="font-display-whisper text-foreground/30 block mb-8">
               Contact
             </span>

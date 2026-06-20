@@ -2,7 +2,6 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import ThesisPreview from "@/components/sections/ThesisPreview";
-import PortfolioPreview from "@/components/sections/PortfolioPreview";
 import LeadershipPreview from "@/components/sections/LeadershipPreview";
 import FoundationPreview from "@/components/sections/FoundationPreview";
 import CTA from "@/components/sections/CTA";
@@ -15,7 +14,6 @@ export default function Home() {
       <main>
         <Hero />
         <ThesisPreview />
-        <PortfolioPreview />
         <LeadershipPreview />
         <FoundationPreview />
         <CTA />
