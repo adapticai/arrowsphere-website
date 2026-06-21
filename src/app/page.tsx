@@ -1,25 +1,31 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { SectionCounter } from "@/components/section-counter";
 import Hero from "@/components/sections/Hero";
-import ThesisPreview from "@/components/sections/ThesisPreview";
-import LeadershipPreview from "@/components/sections/LeadershipPreview";
-import FoundationPreview from "@/components/sections/FoundationPreview";
-import CTA from "@/components/sections/CTA";
+import { Manifesto } from "@/components/sections/Manifesto";
+import Thesis from "@/components/sections/Thesis";
+import Divergence from "@/components/sections/Divergence";
+import Approach from "@/components/sections/Approach";
+import Leadership from "@/components/sections/Leadership";
+import Connect from "@/components/sections/Connect";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div id="top" className="min-h-screen">
+      <ScrollProgress />
       <Header />
-
       <main>
         <Hero />
-        <ThesisPreview />
-        <LeadershipPreview />
-        <FoundationPreview />
-        <CTA />
+        <Manifesto />
+        <Thesis />
+        <Divergence />
+        <Approach />
+        <Leadership />
+        <Connect />
       </main>
-
       <Footer />
+      <SectionCounter />
     </div>
   );
 }

@@ -1,166 +1,208 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import { ArrowsphereLogo } from "@/components/ArrowsphereLogo";
 
-interface NavigationItem {
-  name: string;
-  href: string;
-}
-
-const navigationItems: NavigationItem[] = [
-  { name: "Thesis", href: "/thesis" },
-  { name: "Leadership", href: "/leadership" },
-  { name: "Foundation", href: "/foundation" },
-  { name: "Contact", href: "/contact" },
+const NAV = [
+  { label: "Thesis", href: "/#thesis" },
+  { label: "Leadership", href: "/#leadership" },
+  { label: "Approach", href: "/#approach" },
+  { label: "Contact", href: "/#connect" },
 ];
 
-export default function Header() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [isScrolled, setIsScrolled] = React.useState(false);
-  const pathname = usePathname();
+function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted)
+    return <span aria-hidden style={{ width: 15, height: 15, display: "inline-block" }} />;
+  const dark = resolvedTheme === "dark";
+  return (
+    <button
+      type="button"
+      aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
+      onClick={() => setTheme(dark ? "light" : "dark")}
+      className="text-foreground/50 hover:text-foreground transition-colors duration-500"
+      style={{ display: "inline-flex", alignItems: "center" }}
+    >
+      {dark ? (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" strokeLinecap="round" />
+        </svg>
+      ) : (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" strokeLinejoin="round" />
+        </svg>
+      )}
+    </button>
+  );
+}
 
-  React.useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
-    return pathname.startsWith(href);
-  };
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <>
       <header
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-700",
-          isScrolled
-            ? "bg-background/90 backdrop-blur-xl border-b border-border/50"
-            : "bg-transparent",
-        )}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 50,
+          borderBottom: `0.5px solid ${scrolled ? "var(--border)" : "transparent"}`,
+          background: scrolled
+            ? "color-mix(in oklab, var(--background) 82%, transparent)"
+            : "transparent",
+          backdropFilter: scrolled ? "blur(14px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(14px)" : "none",
+          transition: "background .5s, border-color .5s, backdrop-filter .5s",
+        }}
       >
         <div className="container-luxury">
-          <div className="flex h-20 items-center justify-between">
-            {/* Logo */}
-            <Link
+          <div
+            style={{
+              display: "flex",
+              height: 80,
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <a
               href="/"
-              className="group relative flex items-center"
-              aria-label="Arrowsphere — Home"
+              aria-label="Arrowsphere — home"
+              className="text-foreground transition-opacity duration-500 hover:opacity-60"
+              style={{ display: "inline-flex", alignItems: "center" }}
             >
-              <img
-                src="/arrowsphere-full-logo.svg"
-                alt="Arrowsphere"
-                className="brand-logo hidden h-6 w-auto transition-opacity duration-500 group-hover:opacity-60 sm:block"
-              />
-              <img
-                src="/arrowsphere-icon.svg"
-                alt="Arrowsphere"
-                className="brand-logo h-7 w-auto transition-opacity duration-500 group-hover:opacity-60 sm:hidden"
-              />
-            </Link>
+              <ArrowsphereLogo style={{ height: 22, width: "auto", display: "block" }} />
+            </a>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-12">
-              {navigationItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={cn(
-                    "font-nav relative py-2 transition-all duration-500",
-                    isActive(item.href)
-                      ? "text-foreground"
-                      : "text-foreground/50 hover:text-foreground",
-                  )}
+            <nav
+              className="hidden min-[901px]:flex items-center"
+              style={{ gap: "clamp(1.25rem,2.5vw,3rem)" }}
+            >
+              {NAV.map((n) => (
+                <a
+                  key={n.href}
+                  href={n.href}
+                  className="font-nav text-foreground/50 hover:text-foreground transition-colors duration-500"
                 >
-                  {item.name}
-                  <span
-                    className={cn(
-                      "absolute bottom-0 left-0 h-px bg-foreground transition-all duration-500",
-                      isActive(item.href) ? "w-full" : "w-0 group-hover:w-full",
-                    )}
-                  />
-                </Link>
+                  {n.label}
+                </a>
               ))}
-
-              {/* Theme Toggle - Desktop */}
               <ThemeToggle />
             </nav>
 
-            {/* Mobile: Theme Toggle + Menu Button */}
-            <div className="lg:hidden flex items-center gap-2">
-              <ThemeToggle />
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="relative w-10 h-10 flex flex-col justify-center items-center gap-1.5"
-                aria-label="Toggle menu"
-                aria-expanded={isOpen}
-              >
-                <span
-                  className={cn(
-                    "w-6 h-px bg-foreground transition-all duration-500",
-                    isOpen && "rotate-45 translate-y-[4px]",
-                  )}
-                />
-                <span
-                  className={cn(
-                    "w-6 h-px bg-foreground transition-all duration-500",
-                    isOpen && "-rotate-45 -translate-y-[4px]",
-                  )}
-                />
-              </button>
-            </div>
+            <button
+              type="button"
+              aria-label="Open menu"
+              onClick={() => setOpen(true)}
+              className="flex flex-col min-[901px]:hidden text-foreground"
+              style={{ gap: 5, padding: 6 }}
+            >
+              <span style={{ width: 22, height: 1, background: "currentColor", display: "block" }} />
+              <span style={{ width: 22, height: 1, background: "currentColor", display: "block" }} />
+            </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Navigation Overlay */}
+      {/* Mobile menu */}
       <div
-        className={cn(
-          "fixed inset-0 z-40 bg-background transition-all duration-700 lg:hidden",
-          isOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none",
-        )}
+        aria-hidden={!open}
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 60,
+          background: "var(--background)",
+          opacity: open ? 1 : 0,
+          pointerEvents: open ? "auto" : "none",
+          transition: "opacity .5s",
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
-        <nav className="flex flex-col items-center justify-center h-full gap-8">
-          <Link
-            href="/"
-            onClick={() => setIsOpen(false)}
-            className={cn(
-              "font-display-section text-4xl transition-all duration-500",
-              pathname === "/"
-                ? "text-foreground"
-                : "text-foreground/40 hover:text-foreground",
-            )}
+        <div
+          className="container-luxury"
+          style={{ display: "flex", height: 80, alignItems: "center", justifyContent: "space-between" }}
+        >
+          <ArrowsphereLogo style={{ height: 22, width: "auto", color: "var(--foreground)" }} />
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+            className="text-foreground"
+            style={{ padding: 6, fontSize: 26, lineHeight: 1 }}
           >
-            Home
-          </Link>
-          {navigationItems.map((item, index) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className={cn(
-                "font-display-section text-4xl transition-all duration-500",
-                isActive(item.href)
-                  ? "text-foreground"
-                  : "text-foreground/40 hover:text-foreground",
-              )}
-              style={{ animationDelay: `${(index + 1) * 0.1}s` }}
+            ×
+          </button>
+        </div>
+
+        <nav
+          className="container-luxury"
+          style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}
+        >
+          {NAV.map((n, idx) => (
+            <a
+              key={n.href}
+              href={n.href}
+              onClick={() => setOpen(false)}
+              className="font-display text-foreground"
+              style={{
+                display: "flex",
+                alignItems: "baseline",
+                gap: "1.2rem",
+                padding: "0.75rem 0",
+                borderTop: "0.5px solid var(--border)",
+                fontSize: "clamp(2rem,9vw,3.2rem)",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "0.02em",
+              }}
             >
-              {item.name}
-            </Link>
+              <span style={{ fontSize: "0.7rem", color: "var(--gold)", letterSpacing: "0.2em" }}>
+                0{idx + 1}
+              </span>
+              {n.label}
+            </a>
           ))}
         </nav>
+
+        <div
+          className="container-luxury"
+          style={{
+            paddingBottom: "2.5rem",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
+          <a
+            href="mailto:contact@arrowsphere.co"
+            className="font-nav text-foreground/50 hover:text-foreground transition-colors"
+          >
+            contact@arrowsphere.co
+          </a>
+          <ThemeToggle />
+        </div>
       </div>
     </>
   );

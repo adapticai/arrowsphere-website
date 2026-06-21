@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter, Montserrat } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { CookieConsentProvider } from "@/components/CookieConsentProvider";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -23,10 +23,18 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+// Display - Montserrat for monumental uppercase headlines
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Arrowsphere Holdings",
   description:
-    "Stewardship Capital for the AI-Born Era. A DIFC-incorporated private family office holding company focused on technology ventures, investments, and philanthropy.",
+    "A private family office backing the technology companies of the AI era — and the people who build them.",
   keywords: [
     "family office",
     "private investments",
@@ -82,7 +90,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} ${cormorant.variable} antialiased`}>
+      <body
+        className={`${inter.variable} ${cormorant.variable} ${montserrat.variable} antialiased`}
+      >
         <ThemeProvider defaultTheme="system" storageKey="arrowsphere-theme">
           <CookieConsentProvider>
             {children}

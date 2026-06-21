@@ -1,137 +1,136 @@
-import Link from "next/link";
-import { CookiePreferencesButton } from "@/components/CookieConsent";
+import { ArrowsphereLogoFull } from "@/components/ArrowsphereLogoFull";
 
-interface NavigationLink {
-  name: string;
-  href: string;
-}
+// The footer is the page's dark anchor — fixed colors so it reads the same in
+// both light and dark themes.
+const INK = "oklch(0.155 0.012 60)";
+const INK_FG = "oklch(0.93 0.008 85)";
 
-interface SocialLink {
-  name: string;
-  href: string;
-}
-
-const navigationLinks: NavigationLink[] = [
-  { name: "Thesis", href: "/thesis" },
-  { name: "Leadership", href: "/leadership" },
-  { name: "Foundation", href: "/foundation" },
-  { name: "Contact", href: "/contact" },
-];
-
-const socialLinks: SocialLink[] = [
-  {
-    name: "LinkedIn",
-    href: "https://linkedin.com/company/arrowsphere-holdings",
-  },
-  { name: "Twitter", href: "https://twitter.com/arrowsphere" },
-];
-
-const legalLinks: NavigationLink[] = [
-  { name: "Privacy", href: "/privacy" },
-  { name: "Terms", href: "/terms" },
+const navLinks: Array<[string, string]> = [
+  ["Thesis", "/#thesis"],
+  ["Leadership", "/#leadership"],
+  ["Approach", "/#approach"],
+  ["Contact", "/#connect"],
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-background border-t border-border">
-      {/* Main Footer */}
-      <div className="container-luxury section-padding-sm">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
-          {/* Brand Column */}
-          <div className="lg:col-span-4">
-            <Link href="/" className="inline-block mb-8" aria-label="Arrowsphere — Home">
-              <img
-                src="/arrowsphere-logo.svg"
-                alt="Arrowsphere"
-                className="brand-logo h-6 w-auto"
-              />
-            </Link>
-
-            <p className="font-body-refined text-foreground/50 max-w-sm mb-8">
-              Stewardship Capital for the AI-Born Era. A DIFC-incorporated
-              private family office.
+    <footer style={{ background: INK, color: INK_FG }}>
+      <div
+        className="container-luxury"
+        style={{ paddingTop: "clamp(4rem,8vh,6rem)", paddingBottom: "2.5rem" }}
+      >
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
+          {/* Brand */}
+          <div className="md:col-span-5">
+            <ArrowsphereLogoFull style={{ height: 42, width: "auto", color: INK_FG }} />
+            <p
+              className="font-quote opacity-55"
+              style={{ marginTop: "1.7rem", maxWidth: "27rem", fontSize: "1.05rem", lineHeight: 1.55 }}
+            >
+              A private family office backing the technology companies of the AI
+              era — and the people who build them.
             </p>
-
-            {/* Social Links */}
-            <div className="flex items-center gap-6">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-nav text-foreground/40 hover:text-foreground transition-colors duration-500"
-                >
-                  {link.name}
-                </a>
-              ))}
+            <div style={{ display: "flex", gap: "1.7rem", marginTop: "2rem" }}>
+              <a
+                href="https://linkedin.com/company/arrowsphere"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-nav opacity-55 hover:opacity-100 transition-opacity duration-500"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://twitter.com/arrowsphere"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-nav opacity-55 hover:opacity-100 transition-opacity duration-500"
+              >
+                Twitter
+              </a>
             </div>
           </div>
 
-          {/* Navigation */}
-          <div className="lg:col-span-2 lg:col-start-7">
-            <span className="font-display-whisper text-foreground/30 block mb-8">
+          {/* Navigate */}
+          <div className="md:col-span-3 md:col-start-7">
+            <span
+              className="font-display-whisper opacity-45"
+              style={{ display: "block", marginBottom: "1.5rem" }}
+            >
               Navigate
             </span>
-            <ul className="space-y-4">
-              {navigationLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="font-body-refined text-foreground/50 hover:text-foreground transition-colors duration-500"
+            <ul style={{ display: "flex", flexDirection: "column", gap: "0.9rem" }}>
+              {navLinks.map(([label, href]) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    className="opacity-60 hover:opacity-100 transition-opacity duration-500"
+                    style={{ fontSize: "0.95rem" }}
                   >
-                    {link.name}
-                  </Link>
+                    {label}
+                  </a>
                 </li>
               ))}
+              <li style={{ marginTop: "0.5rem" }}>
+                <a
+                  href="https://collectiveprosperity.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="opacity-45 hover:opacity-100 transition-opacity duration-500"
+                  style={{ fontSize: "0.9rem" }}
+                >
+                  Foundation for Collective Prosperity ↗
+                </a>
+              </li>
             </ul>
           </div>
 
           {/* Contact */}
-          <div className="lg:col-span-2 lg:col-start-10">
-            <span className="font-display-whisper text-foreground/30 block mb-8">
+          <div className="md:col-span-3">
+            <span
+              className="font-display-whisper opacity-45"
+              style={{ display: "block", marginBottom: "1.5rem" }}
+            >
               Contact
             </span>
             <a
               href="mailto:contact@arrowsphere.co"
-              className="font-body-refined text-foreground/50 hover:text-foreground transition-colors duration-500 block mb-4"
+              className="opacity-80 hover:opacity-100 transition-opacity duration-500"
+              style={{ display: "block", marginBottom: "1rem", fontSize: "0.95rem" }}
             >
               contact@arrowsphere.co
             </a>
-            <span className="font-body-refined text-foreground/30 block">
+            <p className="opacity-55" style={{ fontSize: "0.85rem", lineHeight: 1.6 }}>
               Level 1, Innovation One
               <br />
               DIFC, Dubai, UAE
-            </span>
+            </p>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-border/50">
-        <div className="container-luxury py-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            {/* Copyright */}
-            <span className="font-display-whisper text-foreground/30">
-              © {new Date().getFullYear()} Arrowsphere Holdings Limited
-            </span>
-
-            {/* Legal Links */}
-            <div className="flex items-center gap-8">
-              {legalLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="font-display-whisper text-foreground/30 hover:text-foreground/60 transition-colors duration-500"
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <CookiePreferencesButton />
-              <span className="font-display-whisper text-foreground/30">
-                DIFC Incorporated
-              </span>
-            </div>
+        {/* Bottom bar */}
+        <div
+          style={{
+            marginTop: "clamp(3rem,6vh,4.5rem)",
+            paddingTop: "1.8rem",
+            borderTop: `0.5px solid color-mix(in oklab, ${INK_FG} 16%, transparent)`,
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "1rem",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <span className="opacity-50" style={{ fontSize: "0.72rem", letterSpacing: "0.04em" }}>
+            © {new Date().getFullYear()} Arrowsphere Holdings Limited
+          </span>
+          <div style={{ display: "flex", gap: "1.7rem", alignItems: "center" }}>
+            <a href="/privacy" className="font-nav opacity-50 hover:opacity-100 transition-opacity duration-500">
+              Privacy
+            </a>
+            <a href="/terms" className="font-nav opacity-50 hover:opacity-100 transition-opacity duration-500">
+              Terms
+            </a>
+            <span className="font-nav opacity-50">DIFC Incorporated</span>
           </div>
         </div>
       </div>

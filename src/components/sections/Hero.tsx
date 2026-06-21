@@ -1,95 +1,103 @@
-"use client";
+import { Reveal } from "@/components/reveal";
+import { Sphere } from "@/components/sphere";
 
-import Link from "next/link";
+const line = "color-mix(in oklab, var(--border) 70%, transparent)";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background">
-      {/* Subtle texture overlay */}
-      <div className="absolute inset-0 noise-overlay opacity-50" />
+    <section
+      id="hero"
+      data-name="Origin"
+      style={{
+        position: "relative",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        overflow: "hidden",
+      }}
+    >
+      {/* Sphere motif, upper-right */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          top: "5%",
+          right: "3%",
+          width: "min(48vw, 640px)",
+          height: "min(48vw, 640px)",
+          zIndex: 0,
+        }}
+      >
+        <Sphere />
+      </div>
 
       {/* Architectural lines */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Vertical line - left */}
-        <div className="absolute left-[15%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border/50 to-transparent animate-line-draw" />
-
-        {/* Vertical line - right */}
-        <div
-          className="absolute right-[15%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border/50 to-transparent animate-line-draw"
-          style={{ animationDelay: "0.3s" }}
-        />
-
-        {/* Horizontal line */}
-        <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border/30 to-transparent" />
+      <div aria-hidden style={{ position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none" }}>
+        <div style={{ position: "absolute", left: "15%", top: 0, bottom: 0, width: 1, background: `linear-gradient(to bottom, transparent, ${line}, transparent)` }} />
+        <div style={{ position: "absolute", right: "15%", top: 0, bottom: 0, width: 1, background: `linear-gradient(to bottom, transparent, ${line}, transparent)` }} />
+        <div style={{ position: "absolute", top: "50%", left: 0, right: 0, height: 1, background: "linear-gradient(to right, transparent, color-mix(in oklab, var(--border) 45%, transparent), transparent)" }} />
       </div>
 
-      {/* Main Content */}
-      <div className="container-luxury relative z-10 pt-32 pb-8">
-        {/* Eyebrow */}
-        <div className="animate-reveal mb-16">
-          <span className="font-display-whisper text-foreground/50">
-            Private Family Office — DIFC
-          </span>
-        </div>
-
-        {/* Main Headline - Monumental Scale */}
-        <div className="max-w-[90vw] lg:max-w-none">
-          <h1 className="font-display-hero text-foreground leading-[0.85] animate-reveal-delayed">
-            <span className="block">Stewardship</span>
-            <span className="block text-foreground/30">Capital</span>
-          </h1>
-        </div>
-
-        {/* Subline with Editorial Serif */}
-        <div className="mt-16 max-w-2xl animate-reveal-delayed-2">
-          <p className="font-quote text-foreground/70">
-            A family office backing AI-Born companies built to share what they
-            create — a bet that this makes them more durable, not less.
-          </p>
-        </div>
-
-        {/* CTA Row */}
-        <div className="mt-20 flex flex-col sm:flex-row items-start gap-8 animate-reveal-delayed-3">
-          <Link
-            href="/thesis"
-            className="group inline-flex items-center gap-4 font-nav text-foreground hover:text-foreground/70 transition-all duration-500"
+      {/* Content */}
+      <div className="container-luxury" style={{ position: "relative", zIndex: 2, paddingTop: "8rem", paddingBottom: "2rem" }}>
+        <Reveal>
+          <span
+            className="font-display-whisper"
+            style={{ color: "color-mix(in oklab, var(--foreground) 48%, transparent)", letterSpacing: "0.28em" }}
           >
-            <span className="relative">
-              Explore Our Thesis
-              <span className="absolute bottom-0 left-0 w-full h-px bg-foreground transition-transform duration-500 origin-left group-hover:scale-x-0" />
+            Private Family Office
+          </span>
+        </Reveal>
+
+        <Reveal delay={120}>
+          <h1 className="font-display-hero" style={{ marginTop: "clamp(2rem,5vh,3.5rem)" }}>
+            <span style={{ display: "block" }}>Stewardship</span>
+            <span style={{ display: "block", color: "color-mix(in oklab, var(--foreground) 32%, transparent)" }}>
+              Capital
             </span>
-            <svg
-              className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </Link>
-        </div>
+          </h1>
+        </Reveal>
+
+        <Reveal delay={260}>
+          <p
+            className="font-quote"
+            style={{ marginTop: "clamp(1.6rem,3.5vh,2.5rem)", maxWidth: "34rem", color: "color-mix(in oklab, var(--foreground) 72%, transparent)" }}
+          >
+            A private family office backing technology founders — and helping them
+            build companies the people who create the value actually own.
+          </p>
+        </Reveal>
+
+        <Reveal delay={400}>
+          <a
+            href="#thesis"
+            className="font-nav text-foreground hover:opacity-60 transition-opacity duration-500"
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.8rem", marginTop: "clamp(2rem,5vh,3rem)" }}
+          >
+            Explore Our Thesis <span aria-hidden>→</span>
+          </a>
+        </Reveal>
       </div>
 
-      {/* Bottom Info Row - Separate from main content to prevent overlap */}
-      <div className="absolute bottom-0 left-0 right-0 z-10">
+      {/* Bottom row */}
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 2 }}>
         <div className="container-luxury">
-          <div className="flex items-end justify-between border-t border-border/30 py-8">
-            {/* Scroll Indicator */}
-            <div className="flex items-center gap-4 text-foreground/30">
-              <div className="w-px h-12 bg-foreground/30 animate-pulse" />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "flex-end",
+              justifyContent: "space-between",
+              borderTop: "0.5px solid color-mix(in oklab, var(--border) 60%, transparent)",
+              padding: "2rem 0",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem", color: "color-mix(in oklab, var(--foreground) 35%, transparent)" }}>
+              <span className="animate-pulse" style={{ width: 1, height: 44, background: "currentColor", display: "block" }} />
               <span className="font-display-whisper">Scroll</span>
             </div>
-
-            {/* Location */}
-            <div className="hidden sm:block text-right">
-              <span className="font-display-whisper text-foreground/30">
-                Level 1, Innovation One, DIFC, Dubai, UAE
-              </span>
+            <div className="hidden sm:block" style={{ color: "color-mix(in oklab, var(--foreground) 40%, transparent)" }}>
+              <span className="font-display-whisper">Level 1, Innovation One · Dubai</span>
             </div>
           </div>
         </div>
