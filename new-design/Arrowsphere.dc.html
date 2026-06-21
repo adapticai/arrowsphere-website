@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&amp;family=Montserrat:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  body{font-family:Inter,system-ui,sans-serif;background:oklch(0.98 0.005 85);}
+  ::selection{background:oklch(0.85 0.09 85 / 0.5);}
+  ::-webkit-scrollbar{width:7px;height:7px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+  ::-webkit-scrollbar-thumb{background:rgba(120,115,105,0.4);}
+  @keyframes scrollPulse{0%,100%{transform:scaleY(0.25);opacity:0.3;}50%{transform:scaleY(1);opacity:0.9;}}
+
+  @media (max-width: 900px){
+    [data-nav-links]{display:none !important;}
+    [data-hamburger]{display:flex !important;}
+    [data-hero-h1]{font-size:clamp(2.7rem,13vw,6rem) !important;}
+    [data-grid-2]{display:block !important;}
+    [data-thesis-left]{margin-bottom:3.5rem !important;}
+    [data-thesis-sticky]{position:static !important;}
+    [data-found-grid]{display:block !important;}
+    [data-found-art]{max-width:18rem !important;}
+    [data-found-visual]{margin-bottom:3rem !important;}
+    [data-foot-grid]{display:flex !important;flex-direction:column !important;gap:2.75rem !important;}
+  }
+  @media (max-width: 560px){
+    [data-hero-h1]{font-size:clamp(2.3rem,12.5vw,4rem) !important;}
+    [data-hero-bottom]{flex-direction:column !important;align-items:flex-start !important;gap:1.1rem !important;}
+    [data-hero-loc]{text-align:left !important;}
+    [data-pillar]{grid-template-columns:1fr !important;gap:0.4rem !important;}
+    [data-found-art]{max-width:14rem !important;margin-left:0 !important;}
+    [data-counter]{display:none !important;}
+  }
+</style>
+</helmet>
+<div ref="{{ setRoot }}" id="top" style="--bg:oklch(0.98 0.005 85);--fg:oklch(0.16 0.012 60);--muted:oklch(0.94 0.004 85);--mfg:oklch(0.46 0.01 60);--border:oklch(0.86 0.008 80);--card:oklch(0.995 0.003 85);--gold:oklch(0.72 0.11 80);--maxw:1600px;--pad:clamp(1.5rem,5vw,6rem);position:relative;min-height:100vh;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;overflow-x:hidden;">
+
+  <div style="position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.022;background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);"></div>
+
+  <div data-progress="" style="position:fixed;top:0;left:0;height:1.5px;width:0;background:var(--fg);z-index:70;transition:width .12s linear;"></div>
+
+  <header data-header="" style="position:fixed;top:0;left:0;right:0;z-index:50;border-bottom:0.5px solid transparent;">
+    <div style="width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);">
+      <div style="display:flex;height:80px;align-items:center;justify-content:space-between;">
+        <a href="#top" aria-label="Arrowsphere — home" style="display:inline-flex;align-items:center;color:var(--fg);text-decoration:none;transition:opacity .5s;" style-hover="opacity:0.55;"><span style="display:inline-flex;align-items:center;gap:8px;color:var(--fg);"><svg viewBox="0 0 580 74" fill="currentColor" role="img" aria-label="Arrowsphere" xmlns="http://www.w3.org/2000/svg" style="height: 25px; width: auto; display: block; color: var(--fg); margin-bottom: 8px"><path d="M308.468 30.04C311.148 30.0401 313.807 30.4804 316.447 31.3604C319.087 32.2403 321.367 33.4802 323.287 35.0801L319.508 40.4199C318.268 39.3 316.588 38.3801 314.468 37.6602C312.348 36.9402 310.248 36.5801 308.168 36.5801C306.128 36.5801 304.448 37 303.128 37.8398C301.808 38.6798 301.148 39.9598 301.147 41.6797C301.147 43.3597 301.808 44.6601 303.128 45.5801C304.448 46.46 307.248 47.4201 311.527 48.46C315.847 49.4999 319.087 50.96 321.247 52.8398C323.447 54.7198 324.548 57.4998 324.548 61.1797C324.548 64.8197 323.167 67.7796 320.407 70.0596C317.647 72.3395 314.028 73.4804 309.548 73.4805C302.988 73.4805 297.168 71.22 292.088 66.7002L296.527 61.3604C300.767 65.0403 305.168 66.8799 309.728 66.8799C312.008 66.8799 313.808 66.4004 315.128 65.4404C316.488 64.4404 317.168 63.14 317.168 61.54C317.168 59.9 316.527 58.6398 315.247 57.7598C314.007 56.8399 311.847 56.0197 308.768 55.2998C305.688 54.5398 303.347 53.8598 301.747 53.2598C300.147 52.6198 298.727 51.7997 297.487 50.7998C295.007 48.9198 293.768 46.04 293.768 42.1602C293.768 38.2802 295.168 35.2997 297.968 33.2197C300.808 31.0999 304.308 30.04 308.468 30.04ZM197.537 35.3408C197.84 34.9059 198.43 34.7864 198.893 35.0439C199.5 35.3818 199.686 35.4243 200.473 36.1797C202.513 38.0996 204.092 40.3798 205.212 43.0195C206.332 45.6194 206.893 48.4798 206.893 51.5996C206.893 54.7196 206.332 57.6002 205.212 60.2402C204.092 62.88 202.513 65.1602 200.473 67.0801C198.433 69.0001 196.032 70.5001 193.272 71.5801C190.552 72.6601 187.572 73.2002 184.332 73.2002C181.052 73.2002 179.824 72.7998 179.824 72.7998L181.134 66.9932C181.34 66.4362 182.12 66.1457 182.706 66.2451C183.098 66.3116 183.61 66.3604 184.272 66.3604C186.392 66.3603 188.352 66.0002 190.152 65.2803C191.952 64.5603 193.512 63.5397 194.832 62.2197C196.152 60.8597 197.173 59.3 197.893 57.54C198.653 55.7401 199.032 53.7596 199.032 51.5996C199.032 49.4398 198.653 47.4796 197.893 45.7197C197.173 43.9198 195.152 41.2246 195.152 41.2246C194.761 40.9137 194.654 40.3652 194.904 39.9326C195.445 38.9983 196.16 37.6915 196.794 36.5635L197.258 35.7432C197.35 35.6089 197.444 35.4748 197.537 35.3408ZM44.5195 73H36.96L32.7598 63.46H11.7598L7.55957 73H0L18.4805 31.0596H26.04L44.5195 73ZM74.9512 31.0596C81.3512 31.0596 85.9314 32.1398 88.6914 34.2998C91.4513 36.4598 92.831 39.9198 92.8311 44.6797C92.8311 51.5996 89.8113 55.9597 83.7715 57.7598L94.751 73H85.751L75.7314 58.9004H66.4316V73H59.3516V31.0596H74.9512ZM127.604 31.0596C134.004 31.0596 138.584 32.1398 141.344 34.2998C144.104 36.4598 145.483 39.9198 145.483 44.6797C145.483 51.5996 142.464 55.9597 136.424 57.7598L147.403 73H138.403L128.384 58.9004H119.084V73H112.004V31.0596H127.604ZM236.717 61.2402L246.076 31.0596H252.437L261.797 61.2402L272.356 31.0596H279.977L265.336 73H258.316L249.496 44.2598H249.017L240.196 73H233.177L218.536 31.0596H226.156L236.717 61.2402ZM356.7 31.0596C363.06 31.0596 367.7 32.2799 370.62 34.7197C373.54 37.1597 375 40.92 375 46C375 51.08 373.5 54.8002 370.5 57.1602C367.54 59.52 362.98 60.7002 356.82 60.7002H349.381V73H342.301V31.0596H356.7ZM399.396 49.2402H420.216V31.0596H427.296V73H420.216V55.8398H399.396V73H392.316V31.0596H399.396V49.2402ZM477.417 37.7197H455.037V48.8203H475.137V55.1201H455.037V66.3398H478.137V73H447.957V31.0596H477.417V37.7197ZM511.814 31.0596C518.214 31.0596 522.795 32.1398 525.555 34.2998C528.315 36.4598 529.694 39.9199 529.694 44.6797C529.694 51.5996 526.675 55.9597 520.635 57.7598L531.614 73H522.614L512.595 58.9004H503.295V73H496.215V31.0596H511.814ZM578.327 37.7197H555.947V48.8203H576.047V55.1201H555.947V66.3398H579.047V73H548.867V31.0596H578.327V37.7197ZM202.304 25.3018C202.304 25.6096 202.285 25.8333 202.2 26.0469C202.12 26.25 201.985 26.4265 201.82 26.6475C199.378 29.9654 196.905 33.2532 194.572 36.6357L194.107 37.3135C192.408 39.8084 190.625 42.2517 188.845 44.6875C187.063 47.1246 185.283 49.5545 183.583 52.0293C180.184 56.9787 177.112 62.0962 175.009 67.7734L174.937 67.9668H167.652L167.869 67.5371C168.169 66.9417 168.423 66.5459 168.842 66.041C179.912 52.5092 190.646 38.6136 201.777 25.1133L202.304 24.4756V25.3018ZM184.272 30C187.552 30 190.432 30.6095 193.152 31.6895C193.616 31.8708 193.741 32.4306 193.413 32.8047C192.334 34.0344 191.223 35.1487 190.117 36.3721C189.526 37.0261 188.599 37.243 187.739 37.0479C186.692 36.8102 185.773 36.8399 184.272 36.8398C182.153 36.8398 180.193 37.2 178.393 37.9199C176.633 38.6399 175.072 39.68 173.712 41.04C172.392 42.3599 171.353 43.92 170.593 45.7197C169.873 47.4796 169.513 49.4398 169.513 51.5996C169.513 53.1861 169.391 53.6946 169.632 54.6045C169.817 55.3059 169.718 56.0519 169.185 56.5439C167.438 58.1556 163.825 61.1298 163.799 61.1514C163.799 61.1514 163.799 61.1514 163.332 60.2402C162.212 57.6002 161.652 54.7196 161.652 51.5996C161.652 48.4798 162.212 45.6194 163.332 43.0195C164.452 40.3797 166.032 38.0996 168.072 36.1797C170.112 34.2197 172.513 32.7001 175.272 31.6201C178.032 30.5401 181.032 30 184.272 30ZM14.6396 56.9199H29.8799L22.2598 39.6396L14.6396 56.9199ZM349.381 54.2803H357.601C361.521 54.2803 364.18 53.5396 365.58 52.0596C367.02 50.5396 367.74 48.3399 367.74 45.46C367.74 42.54 366.84 40.4803 365.04 39.2803C363.24 38.0803 360.42 37.4805 356.58 37.4805H349.381V54.2803ZM66.4316 52.4805H75.251C79.2509 52.4805 81.9711 51.86 83.4111 50.6201C84.8511 49.3801 85.5713 47.3997 85.5713 44.6797C85.5712 41.92 84.8314 40.04 83.3516 39.04C81.8716 38.0001 79.2314 37.4805 75.4316 37.4805H66.4316V52.4805ZM119.084 52.4805H127.903C131.903 52.4805 134.623 51.86 136.063 50.6201C137.503 49.3801 138.224 47.3997 138.224 44.6797C138.224 41.92 137.484 40.04 136.004 39.04C134.524 38.0001 131.884 37.4805 128.084 37.4805H119.084V52.4805ZM503.295 52.4805H512.114C516.114 52.4805 518.834 51.86 520.274 50.6201C521.714 49.3801 522.435 47.3997 522.435 44.6797C522.435 41.92 521.695 40.04 520.215 39.04C518.735 38.0001 516.095 37.4805 512.295 37.4805H503.295V52.4805ZM216.873 5.875C215.071 10.3768 214.943 11.7896 215.284 13.4863C215.545 14.7838 215.776 15.2798 215.967 15.5967C216.123 15.8563 216.62 16.776 216.858 17.0898L217.486 18.502L215.945 18.3613C212.421 18.0384 209.561 18.7197 206.779 20.8828L204.698 22.5L205.342 19.9453C205.692 18.5539 205.972 16.9814 205.964 15.4668C205.956 13.949 205.658 12.5589 204.923 11.4619L204.079 10.2041L205.586 10.0537C206.815 9.93102 207.69 9.88126 208.52 9.77734C209.311 9.67813 209.943 9.5407 210.552 9.2793C211.774 8.75441 213.074 7.66462 215.332 4.95703L219 0.558594L216.873 5.875Z" fill="currentColor"></path></svg></span></a>
+        <nav style="display:flex;align-items:center;gap:clamp(1.25rem,2.5vw,3rem);"><span data-nav-links="" style="display:flex;align-items:center;gap:clamp(1.25rem,2.5vw,3rem);">
+          <a href="#thesis" style="text-decoration:none;color:color-mix(in oklab,var(--fg) 52%,transparent);font-size:0.72rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;transition:color .5s;" style-hover="color:var(--fg);">Thesis</a>
+          <a href="#leadership" style="text-decoration:none;color:color-mix(in oklab,var(--fg) 52%,transparent);font-size:0.72rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;transition:color .5s;" style-hover="color:var(--fg);">Leadership</a>
+          <a href="#approach" style="text-decoration:none;color:color-mix(in oklab,var(--fg) 52%,transparent);font-size:0.72rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;transition:color .5s;" style-hover="color:var(--fg);">Approach</a>
+          <a href="#connect" style="text-decoration:none;color:color-mix(in oklab,var(--fg) 52%,transparent);font-size:0.72rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;transition:color .5s;" style-hover="color:var(--fg);">Contact</a>
+          </span><button data-toggle="" onClick="{{ toggleTheme }}" aria-label="Toggle theme" style="display:flex;align-items:center;background:none;border:none;cursor:pointer;padding:6px;margin-left:0.5rem;"><span data-toggle-mark="" style="display:block;width:13px;height:13px;border-radius:50%;border:1px solid var(--fg);background:linear-gradient(90deg,var(--fg) 50%,transparent 50%);transition:transform .7s cubic-bezier(.16,1,.3,1);"></span></button>
+          <button data-hamburger="" onClick="{{ openMenu }}" aria-label="Open menu" style="display:none;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:8px;margin-left:0.5rem;"><span style="display:block;width:22px;height:1px;background:var(--fg);"></span><span style="display:block;width:22px;height:1px;background:var(--fg);"></span></button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div data-menu="" style="display:none;opacity:0;position:fixed;inset:0;z-index:90;background:var(--bg);flex-direction:column;padding:clamp(1.25rem,4vw,2.5rem) var(--pad) clamp(2rem,5vh,3rem);">
+    <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,color-mix(in oklab,var(--border) 80%,transparent),transparent);"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;height:80px;flex:none;">
+      <span style="display:inline-flex;align-items:center;gap:9px;color:var(--fg);"><svg viewBox="0 0 58 74" fill="currentColor" role="img" aria-label="Arrowsphere icon" xmlns="http://www.w3.org/2000/svg" style="height:18px;width:auto;display:block;color:var(--fg);"><path d="M40.6514 25.3018C40.6514 25.6097 40.6327 25.833 40.5482 26.0466C40.4677 26.2498 40.3323 26.4259 40.1677 26.647C37.725 29.965 35.2523 33.2527 32.9196 36.6353L32.455 37.3134C30.7552 39.8083 28.9729 42.2512 27.1922 44.6871C25.4105 47.1242 23.6304 49.554 21.9305 52.0288C18.531 56.9784 15.4601 62.0962 13.3566 67.7737L13.2847 67.9672H6L6.21634 67.5372C6.51581 66.9416 6.7704 66.5461 7.18898 66.0412C18.2597 52.5092 28.9934 38.6139 40.1253 25.1134L40.6514 24.4753V25.3018ZM55.2204 5.87459C53.4183 10.3769 53.2908 11.7897 53.6321 13.4867C53.8931 14.7842 54.1233 15.2796 54.3146 15.5965C54.4713 15.8561 54.9681 16.7761 55.2063 17.0899L55.8338 18.5018L54.2933 18.3618C50.769 18.0387 47.9085 18.7195 45.1268 20.8826L43.0457 22.5L43.6892 19.9455C44.039 18.554 44.3194 16.9818 44.3114 15.4672C44.3033 13.9493 44.006 12.5589 43.2708 11.4619L42.427 10.2041L43.9338 10.0535C45.1628 9.93082 46.038 9.88113 46.8676 9.77717C47.6592 9.67796 48.2899 9.54079 48.8991 9.27939C50.1218 8.75454 51.4218 7.66492 53.68 4.95695L57.3477 0.55835L55.2204 5.87459Z" fill="currentColor"></path><path d="M22.6201 30C25.9001 30 28.78 30.6095 31.5 31.6895C31.9634 31.8708 32.0886 32.4303 31.7604 32.8044C30.6817 34.0341 29.5701 35.1484 28.4646 36.3718C27.8736 37.0259 26.947 37.2428 26.0872 37.0476C25.0399 36.8099 24.1205 36.8399 22.6201 36.8398C20.5002 36.8398 18.5402 37.2 16.7402 37.9199C14.9802 38.6399 13.4196 39.68 12.0596 41.04C10.7398 42.3599 9.70037 43.92 8.94043 45.7197C8.22047 47.4796 7.8604 49.4398 7.86035 51.5996C7.86035 53.1862 7.73854 53.6948 7.97904 54.6048C8.16441 55.3062 8.06554 56.0514 7.5324 56.5435C5.77974 58.161 2.14624 61.1514 2.14624 61.1514L18.1722 72.7998L19.4818 66.9932C19.6881 66.4362 20.4677 66.1461 21.0533 66.2455C21.4449 66.312 21.9575 66.3604 22.6201 66.3604C24.74 66.3603 26.7001 66.0002 28.5 65.2803C30.3 64.5603 31.8597 63.5397 33.1797 62.2197C34.4997 60.8597 35.5202 59.3 36.2402 57.54C37.0002 55.7401 37.3799 53.7596 37.3799 51.5996C37.3798 49.4398 37.0002 47.4796 36.2402 45.7197C35.5202 43.9198 33.5 41.225 33.5 41.225C33.1087 40.914 33.0015 40.3656 33.2518 39.933C33.7925 38.9986 34.5079 37.6916 35.1419 36.5633L35.6058 35.7431C35.6984 35.6089 35.7912 35.4748 35.8843 35.3408C36.1867 34.9057 36.777 34.7867 37.24 35.0444C37.8471 35.3822 38.034 35.4242 38.8203 36.1797C40.8602 38.0996 42.4396 40.3798 43.5596 43.0195C44.6795 45.6194 45.2402 48.4798 45.2402 51.5996C45.2402 54.7196 44.6796 57.6002 43.5596 60.2402C42.4396 62.88 40.8602 65.1602 38.8203 67.0801C36.7803 69.0001 34.3801 70.5001 31.6201 71.5801C28.9001 72.6601 25.9197 73.2002 22.6797 73.2002C19.3999 73.2002 18.1722 72.7998 18.1722 72.7998L2.14624 61.1514C2.14624 61.1514 2.14624 61.1514 1.67969 60.2402C0.559687 57.6002 0 54.7196 0 51.5996C4.67853e-05 48.4798 0.559734 45.6194 1.67969 43.0195C2.79968 40.3797 4.38 38.0996 6.41992 36.1797C8.4599 34.2197 10.8602 32.7001 13.6201 31.6201C16.3801 30.5401 19.3801 30 22.6201 30Z" fill="currentColor"></path></svg><svg viewBox="0 0 580 74" fill="currentColor" role="img" aria-label="Arrowsphere" xmlns="http://www.w3.org/2000/svg" style="height:18px;width:auto;display:block;color:var(--fg);"><path d="M308.468 30.04C311.148 30.0401 313.807 30.4804 316.447 31.3604C319.087 32.2403 321.367 33.4802 323.287 35.0801L319.508 40.4199C318.268 39.3 316.588 38.3801 314.468 37.6602C312.348 36.9402 310.248 36.5801 308.168 36.5801C306.128 36.5801 304.448 37 303.128 37.8398C301.808 38.6798 301.148 39.9598 301.147 41.6797C301.147 43.3597 301.808 44.6601 303.128 45.5801C304.448 46.46 307.248 47.4201 311.527 48.46C315.847 49.4999 319.087 50.96 321.247 52.8398C323.447 54.7198 324.548 57.4998 324.548 61.1797C324.548 64.8197 323.167 67.7796 320.407 70.0596C317.647 72.3395 314.028 73.4804 309.548 73.4805C302.988 73.4805 297.168 71.22 292.088 66.7002L296.527 61.3604C300.767 65.0403 305.168 66.8799 309.728 66.8799C312.008 66.8799 313.808 66.4004 315.128 65.4404C316.488 64.4404 317.168 63.14 317.168 61.54C317.168 59.9 316.527 58.6398 315.247 57.7598C314.007 56.8399 311.847 56.0197 308.768 55.2998C305.688 54.5398 303.347 53.8598 301.747 53.2598C300.147 52.6198 298.727 51.7997 297.487 50.7998C295.007 48.9198 293.768 46.04 293.768 42.1602C293.768 38.2802 295.168 35.2997 297.968 33.2197C300.808 31.0999 304.308 30.04 308.468 30.04ZM197.537 35.3408C197.84 34.9059 198.43 34.7864 198.893 35.0439C199.5 35.3818 199.686 35.4243 200.473 36.1797C202.513 38.0996 204.092 40.3798 205.212 43.0195C206.332 45.6194 206.893 48.4798 206.893 51.5996C206.893 54.7196 206.332 57.6002 205.212 60.2402C204.092 62.88 202.513 65.1602 200.473 67.0801C198.433 69.0001 196.032 70.5001 193.272 71.5801C190.552 72.6601 187.572 73.2002 184.332 73.2002C181.052 73.2002 179.824 72.7998 179.824 72.7998L181.134 66.9932C181.34 66.4362 182.12 66.1457 182.706 66.2451C183.098 66.3116 183.61 66.3604 184.272 66.3604C186.392 66.3603 188.352 66.0002 190.152 65.2803C191.952 64.5603 193.512 63.5397 194.832 62.2197C196.152 60.8597 197.173 59.3 197.893 57.54C198.653 55.7401 199.032 53.7596 199.032 51.5996C199.032 49.4398 198.653 47.4796 197.893 45.7197C197.173 43.9198 195.152 41.2246 195.152 41.2246C194.761 40.9137 194.654 40.3652 194.904 39.9326C195.445 38.9983 196.16 37.6915 196.794 36.5635L197.258 35.7432C197.35 35.6089 197.444 35.4748 197.537 35.3408ZM44.5195 73H36.96L32.7598 63.46H11.7598L7.55957 73H0L18.4805 31.0596H26.04L44.5195 73ZM74.9512 31.0596C81.3512 31.0596 85.9314 32.1398 88.6914 34.2998C91.4513 36.4598 92.831 39.9198 92.8311 44.6797C92.8311 51.5996 89.8113 55.9597 83.7715 57.7598L94.751 73H85.751L75.7314 58.9004H66.4316V73H59.3516V31.0596H74.9512ZM127.604 31.0596C134.004 31.0596 138.584 32.1398 141.344 34.2998C144.104 36.4598 145.483 39.9198 145.483 44.6797C145.483 51.5996 142.464 55.9597 136.424 57.7598L147.403 73H138.403L128.384 58.9004H119.084V73H112.004V31.0596H127.604ZM236.717 61.2402L246.076 31.0596H252.437L261.797 61.2402L272.356 31.0596H279.977L265.336 73H258.316L249.496 44.2598H249.017L240.196 73H233.177L218.536 31.0596H226.156L236.717 61.2402ZM356.7 31.0596C363.06 31.0596 367.7 32.2799 370.62 34.7197C373.54 37.1597 375 40.92 375 46C375 51.08 373.5 54.8002 370.5 57.1602C367.54 59.52 362.98 60.7002 356.82 60.7002H349.381V73H342.301V31.0596H356.7ZM399.396 49.2402H420.216V31.0596H427.296V73H420.216V55.8398H399.396V73H392.316V31.0596H399.396V49.2402ZM477.417 37.7197H455.037V48.8203H475.137V55.1201H455.037V66.3398H478.137V73H447.957V31.0596H477.417V37.7197ZM511.814 31.0596C518.214 31.0596 522.795 32.1398 525.555 34.2998C528.315 36.4598 529.694 39.9199 529.694 44.6797C529.694 51.5996 526.675 55.9597 520.635 57.7598L531.614 73H522.614L512.595 58.9004H503.295V73H496.215V31.0596H511.814ZM578.327 37.7197H555.947V48.8203H576.047V55.1201H555.947V66.3398H579.047V73H548.867V31.0596H578.327V37.7197ZM202.304 25.3018C202.304 25.6096 202.285 25.8333 202.2 26.0469C202.12 26.25 201.985 26.4265 201.82 26.6475C199.378 29.9654 196.905 33.2532 194.572 36.6357L194.107 37.3135C192.408 39.8084 190.625 42.2517 188.845 44.6875C187.063 47.1246 185.283 49.5545 183.583 52.0293C180.184 56.9787 177.112 62.0962 175.009 67.7734L174.937 67.9668H167.652L167.869 67.5371C168.169 66.9417 168.423 66.5459 168.842 66.041C179.912 52.5092 190.646 38.6136 201.777 25.1133L202.304 24.4756V25.3018ZM184.272 30C187.552 30 190.432 30.6095 193.152 31.6895C193.616 31.8708 193.741 32.4306 193.413 32.8047C192.334 34.0344 191.223 35.1487 190.117 36.3721C189.526 37.0261 188.599 37.243 187.739 37.0479C186.692 36.8102 185.773 36.8399 184.272 36.8398C182.153 36.8398 180.193 37.2 178.393 37.9199C176.633 38.6399 175.072 39.68 173.712 41.04C172.392 42.3599 171.353 43.92 170.593 45.7197C169.873 47.4796 169.513 49.4398 169.513 51.5996C169.513 53.1861 169.391 53.6946 169.632 54.6045C169.817 55.3059 169.718 56.0519 169.185 56.5439C167.438 58.1556 163.825 61.1298 163.799 61.1514C163.799 61.1514 163.799 61.1514 163.332 60.2402C162.212 57.6002 161.652 54.7196 161.652 51.5996C161.652 48.4798 162.212 45.6194 163.332 43.0195C164.452 40.3797 166.032 38.0996 168.072 36.1797C170.112 34.2197 172.513 32.7001 175.272 31.6201C178.032 30.5401 181.032 30 184.272 30ZM14.6396 56.9199H29.8799L22.2598 39.6396L14.6396 56.9199ZM349.381 54.2803H357.601C361.521 54.2803 364.18 53.5396 365.58 52.0596C367.02 50.5396 367.74 48.3399 367.74 45.46C367.74 42.54 366.84 40.4803 365.04 39.2803C363.24 38.0803 360.42 37.4805 356.58 37.4805H349.381V54.2803ZM66.4316 52.4805H75.251C79.2509 52.4805 81.9711 51.86 83.4111 50.6201C84.8511 49.3801 85.5713 47.3997 85.5713 44.6797C85.5712 41.92 84.8314 40.04 83.3516 39.04C81.8716 38.0001 79.2314 37.4805 75.4316 37.4805H66.4316V52.4805ZM119.084 52.4805H127.903C131.903 52.4805 134.623 51.86 136.063 50.6201C137.503 49.3801 138.224 47.3997 138.224 44.6797C138.224 41.92 137.484 40.04 136.004 39.04C134.524 38.0001 131.884 37.4805 128.084 37.4805H119.084V52.4805ZM503.295 52.4805H512.114C516.114 52.4805 518.834 51.86 520.274 50.6201C521.714 49.3801 522.435 47.3997 522.435 44.6797C522.435 41.92 521.695 40.04 520.215 39.04C518.735 38.0001 516.095 37.4805 512.295 37.4805H503.295V52.4805ZM216.873 5.875C215.071 10.3768 214.943 11.7896 215.284 13.4863C215.545 14.7838 215.776 15.2798 215.967 15.5967C216.123 15.8563 216.62 16.776 216.858 17.0898L217.486 18.502L215.945 18.3613C212.421 18.0384 209.561 18.7197 206.779 20.8828L204.698 22.5L205.342 19.9453C205.692 18.5539 205.972 16.9814 205.964 15.4668C205.956 13.949 205.658 12.5589 204.923 11.4619L204.079 10.2041L205.586 10.0537C206.815 9.93102 207.69 9.88126 208.52 9.77734C209.311 9.67813 209.943 9.5407 210.552 9.2793C211.774 8.75441 213.074 7.66462 215.332 4.95703L219 0.558594L216.873 5.875Z" fill="currentColor"></path></svg></span>
+      <button data-menu-close="" onClick="{{ closeMenu }}" aria-label="Close menu" style="position:relative;width:38px;height:38px;background:none;border:none;cursor:pointer;">
+        <span style="position:absolute;top:50%;left:50%;width:24px;height:1px;background:var(--fg);transform:translate(-50%,-50%) rotate(45deg);"></span>
+        <span style="position:absolute;top:50%;left:50%;width:24px;height:1px;background:var(--fg);transform:translate(-50%,-50%) rotate(-45deg);"></span>
+      </button>
+    </div>
+    <nav style="flex:1;display:flex;flex-direction:column;justify-content:center;border-top:0.5px solid color-mix(in oklab,var(--border) 55%,transparent);">
+      <a data-menu-item="" href="#thesis" onClick="{{ closeMenu }}" style="display:flex;align-items:center;gap:clamp(1rem,3vw,1.75rem);padding:clamp(0.7rem,2.1vh,1.3rem) 0;border-bottom:0.5px solid color-mix(in oklab,var(--border) 55%,transparent);text-decoration:none;color:var(--fg);transition:padding-left .5s cubic-bezier(.16,1,.3,1);" style-hover="padding-left:0.85rem;">
+        <span style="font-family:'Courier New',monospace;font-size:0.78rem;color:var(--gold);letter-spacing:0.05em;min-width:2rem;">01</span>
+        <span style="font-size:clamp(2.1rem,8vw,3.6rem);font-weight:200;letter-spacing:-0.025em;line-height:1.05;">Thesis</span>
+      </a>
+      <a data-menu-item="" href="#leadership" onClick="{{ closeMenu }}" style="display:flex;align-items:center;gap:clamp(1rem,3vw,1.75rem);padding:clamp(0.7rem,2.1vh,1.3rem) 0;border-bottom:0.5px solid color-mix(in oklab,var(--border) 55%,transparent);text-decoration:none;color:var(--fg);transition:padding-left .5s cubic-bezier(.16,1,.3,1);" style-hover="padding-left:0.85rem;">
+        <span style="font-family:'Courier New',monospace;font-size:0.78rem;color:var(--gold);letter-spacing:0.05em;min-width:2rem;">02</span>
+        <span style="font-size:clamp(2.1rem,8vw,3.6rem);font-weight:200;letter-spacing:-0.025em;line-height:1.05;">Leadership</span>
+      </a>
+      <a data-menu-item="" href="#approach" onClick="{{ closeMenu }}" style="display:flex;align-items:center;gap:clamp(1rem,3vw,1.75rem);padding:clamp(0.7rem,2.1vh,1.3rem) 0;border-bottom:0.5px solid color-mix(in oklab,var(--border) 55%,transparent);text-decoration:none;color:var(--fg);transition:padding-left .5s cubic-bezier(.16,1,.3,1);" style-hover="padding-left:0.85rem;">
+        <span style="font-family:'Courier New',monospace;font-size:0.78rem;color:var(--gold);letter-spacing:0.05em;min-width:2rem;">03</span>
+        <span style="font-size:clamp(2.1rem,8vw,3.6rem);font-weight:200;letter-spacing:-0.025em;line-height:1.05;">Approach</span>
+      </a>
+      <a data-menu-item="" href="#connect" onClick="{{ closeMenu }}" style="display:flex;align-items:center;gap:clamp(1rem,3vw,1.75rem);padding:clamp(0.7rem,2.1vh,1.3rem) 0;border-bottom:0.5px solid color-mix(in oklab,var(--border) 55%,transparent);text-decoration:none;color:var(--fg);transition:padding-left .5s cubic-bezier(.16,1,.3,1);" style-hover="padding-left:0.85rem;">
+        <span style="font-family:'Courier New',monospace;font-size:0.78rem;color:var(--gold);letter-spacing:0.05em;min-width:2rem;">04</span>
+        <span style="font-size:clamp(2.1rem,8vw,3.6rem);font-weight:200;letter-spacing:-0.025em;line-height:1.05;">Contact</span>
+      </a>
+    </nav>
+    <div data-menu-item="" style="flex:none;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.5rem 2.5rem;border-top:0.5px solid color-mix(in oklab,var(--border) 55%,transparent);padding-top:1.75rem;">
+      <div style="display:flex;flex-direction:column;gap:0.65rem;">
+        <span style="font-size:0.6rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 35%,transparent);">Contact</span>
+        <a href="mailto:contact@arrowsphere.co" style="text-decoration:none;color:color-mix(in oklab,var(--fg) 72%,transparent);font-weight:300;">contact@arrowsphere.co</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.65rem;">
+        <span style="font-size:0.6rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 35%,transparent);">Office</span>
+        <span style="color:color-mix(in oklab,var(--fg) 60%,transparent);font-weight:300;">Level 1, Innovation One · Dubai</span>
+      </div>
+      <button onClick="{{ toggleTheme }}" aria-label="Toggle theme" style="display:flex;align-items:center;gap:0.6rem;background:none;border:0.5px solid color-mix(in oklab,var(--fg) 25%,transparent);cursor:pointer;padding:0.7rem 1.1rem;color:var(--fg);">
+        <span style="display:block;width:12px;height:12px;border-radius:50%;border:1px solid var(--fg);background:linear-gradient(90deg,var(--fg) 50%,transparent 50%);"></span>
+        <span style="font-size:0.6rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;">Theme</span>
+      </button>
+    </div>
+  </div>
+
+  <div data-counter="" style="position:fixed;bottom:30px;right:clamp(1.5rem,5vw,6rem);z-index:60;display:flex;align-items:baseline;gap:9px;mix-blend-mode:difference;color:#fff;pointer-events:none;">
+    <span data-counter-num="" style="font-family:'Courier New',monospace;font-size:1.5rem;font-weight:300;letter-spacing:-0.02em;">01</span>
+    <span style="font-family:'Courier New',monospace;font-size:0.72rem;opacity:0.5;">/ <span data-counter-total="">08</span></span>
+    <span data-counter-name="" style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;margin-left:4px;">Origin</span>
+  </div>
+
+  <!-- ───────────── HERO ───────────── -->
+  <section data-section="" data-name="Origin" id="hero" style="position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;">
+    <canvas data-sphere="" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;"></canvas>
+    <div style="position:absolute;inset:0;z-index:1;pointer-events:none;">
+      <div style="position:absolute;left:15%;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,color-mix(in oklab,var(--border) 70%,transparent),transparent);"></div>
+      <div style="position:absolute;right:15%;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,color-mix(in oklab,var(--border) 70%,transparent),transparent);"></div>
+      <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,color-mix(in oklab,var(--border) 45%,transparent),transparent);"></div>
+    </div>
+    <div data-hero-content="" style="position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;padding:8rem var(--pad) 2rem;">
+      <div data-reveal="up" style="margin-bottom:clamp(2rem,5vh,3.5rem);">
+        <span style="font-size:clamp(0.62rem,0.85vw,0.72rem);font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 48%,transparent);">Private Family Office</span>
+      </div>
+      <h1 data-reveal="up" data-hero-h1="" data-d="120" style="font-family:'Montserrat',Inter,system-ui,sans-serif;font-size:clamp(3.2rem,11.5vw,9.5rem);font-weight:600;line-height:0.94;letter-spacing:0.008em;text-transform:uppercase;">
+        <span style="display:block;">Stewardship</span>
+        <span style="display:block;color:color-mix(in oklab,var(--fg) 26%,transparent);">Capital</span>
+      </h1>
+      <div data-reveal="up" data-d="260" style="margin-top:clamp(2rem,5vh,3.5rem);max-width:40rem;">
+        <p style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(1.3rem,2.6vw,2.1rem);line-height:1.45;color:color-mix(in oklab,var(--fg) 72%,transparent);">A private family office backing technology founders — and helping them build companies the people who create the value actually own.</p>
+      </div>
+      <div data-reveal="up" data-d="400" style="margin-top:clamp(2.5rem,6vh,4.5rem);">
+        <a href="#thesis" style="display:inline-flex;align-items:center;gap:0.9rem;color:var(--fg);text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid var(--fg);padding-bottom:6px;transition:gap .5s ease,opacity .5s ease;" style-hover="opacity:0.6;gap:1.4rem;">Explore Our Thesis<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:0;left:0;right:0;z-index:2;">
+      <div style="width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);">
+        <div data-hero-bottom="" style="display:flex;align-items:flex-end;justify-content:flex-end;border-top:0.5px solid color-mix(in oklab,var(--border) 60%,transparent);padding:1.75rem 0;position:relative;">
+          <div style="display:flex;align-items:center;gap:1rem;color:color-mix(in oklab,var(--fg) 35%,transparent);position:absolute;left:50%;bottom:1.75rem;transform:translateX(-50%);">
+            <div style="width:1px;height:2.75rem;background:color-mix(in oklab,var(--fg) 32%,transparent);transform-origin:top;animation:scrollPulse 2.6s ease-in-out infinite;"></div>
+            <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;">Scroll</span>
+          </div>
+          <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 30%,transparent);text-align:right;" data-hero-loc="">Level 1, Innovation One · Dubai</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── MANIFESTO ───────────── -->
+  <section data-section="" data-name="Lineage" data-manifesto="" style="position:relative;z-index:2;min-height:265vh;">
+    <div style="position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);">
+      <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem;display:block;">The Leverage Shift — 01</span>
+      <p data-words="" style="font-size:clamp(1.7rem,4.6vw,3.9rem);font-weight:300;line-height:1.3;letter-spacing:-0.014em;max-width:22ch;color:var(--fg);">
+        <span data-word="" style="opacity:0.13;">When</span> <span data-word="" style="opacity:0.13;">a</span> <span data-word="" style="opacity:0.13;">handful</span> <span data-word="" style="opacity:0.13;">of</span> <span data-word="" style="opacity:0.13;">people</span> <span data-word="" style="opacity:0.13;">can</span> <span data-word="" style="opacity:0.13;">build</span> <span data-word="" style="opacity:0.13;">what</span> <span data-word="" style="opacity:0.13;">once</span> <span data-word="" style="opacity:0.13;">took</span> <span data-word="" style="opacity:0.13;">thousands,</span> <span data-word="" style="opacity:0.13;">the</span> <span data-word="" style="opacity:0.13;">question</span> <span data-word="" style="opacity:0.13;">stops</span> <span data-word="" style="opacity:0.13;">being</span> <span data-word="" style="opacity:0.13;">what</span> <span data-word="" style="opacity:0.13;">you</span> <span data-word="" style="opacity:0.13;">can</span> <span data-word="" style="opacity:0.13;">make</span> <span data-word="" style="opacity:0.13;">—</span> <span data-word="" style="opacity:0.13;">and</span> <span data-word="" style="opacity:0.13;">becomes</span> <span data-word="" style="opacity:0.13;color:var(--gold);">who</span> <span data-word="" style="opacity:0.13;color:var(--gold);">it's</span> <span data-word="" style="opacity:0.13;color:var(--gold);">for.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────────── THESIS ───────────── -->
+  <section data-section="" data-name="Thesis" id="thesis" style="position:relative;z-index:2;padding:clamp(6rem,15vh,11rem) 0;">
+    <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);"></div>
+    <div style="width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);">
+      <div data-grid-2="" style="display:grid;grid-template-columns:repeat(12,1fr);gap:2rem;">
+        <div data-thesis-left="" style="grid-column:1 / span 4;">
+          <div data-thesis-sticky="" style="position:sticky;top:18vh;">
+            <span data-reveal="up" style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 45%,transparent);display:block;margin-bottom:1.5rem;">Investment Philosophy</span>
+            <h2 data-reveal="up" data-d="100" style="font-family:'Montserrat',Inter,system-ui,sans-serif;font-size:clamp(1.65rem,3.8vw,2.9rem);font-weight:600;line-height:1.12;letter-spacing:0.03em;text-transform:uppercase;">The Stewardship Thesis</h2>
+            <p data-reveal="up" data-d="200" style="margin-top:2rem;font-size:clamp(0.95rem,1.1vw,1.05rem);font-weight:300;line-height:1.8;color:var(--mfg);max-width:22rem;">We back for-profit companies built, from day one, to share ownership widely. Not out of charity — because it's the more durable way to build.</p>
+          </div>
+        </div>
+        <div style="grid-column:6 / span 7;">
+          <div data-reveal="up" data-pillar="" style="border-top:0.5px solid color-mix(in oklab,var(--border) 75%,transparent);padding:clamp(2.5rem,5vw,4rem) 0;display:grid;grid-template-columns:auto 1fr;gap:clamp(1.5rem,3vw,3rem);align-items:start;">
+            <span style="font-family:'Courier New',monospace;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:200;line-height:1;color:color-mix(in oklab,var(--fg) 13%,transparent);">01</span>
+            <div>
+              <h3 style="font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:300;letter-spacing:-0.02em;margin-bottom:0.5rem;">The Leverage Shift</h3>
+              <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 42%,transparent);display:block;margin-bottom:1.5rem;">What AI Actually Changes</span>
+              <p style="font-size:clamp(0.95rem,1.1vw,1.05rem);font-weight:300;line-height:1.8;color:var(--mfg);max-width:34rem;">AI doesn't just automate tasks; it automates judgment. A handful of people can now do what once took thousands. When leverage gets that cheap, the constraint stops being capacity — and starts being intent.</p>
+            </div>
+          </div>
+          <div data-reveal="up" data-pillar="" style="border-top:0.5px solid color-mix(in oklab,var(--border) 75%,transparent);padding:clamp(2.5rem,5vw,4rem) 0;display:grid;grid-template-columns:auto 1fr;gap:clamp(1.5rem,3vw,3rem);align-items:start;">
+            <span style="font-family:'Courier New',monospace;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:200;line-height:1;color:color-mix(in oklab,var(--fg) 13%,transparent);">02</span>
+            <div>
+              <h3 style="font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:300;letter-spacing:-0.02em;margin-bottom:0.5rem;">The Fork in the Road</h3>
+              <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 42%,transparent);display:block;margin-bottom:1.5rem;">Concentrated vs. Distributed</span>
+              <p style="font-size:clamp(0.95rem,1.1vw,1.05rem);font-weight:300;line-height:1.8;color:var(--mfg);max-width:34rem;">That leverage can pool wealth in very few hands, or spread it across many. The technology doesn't decide which — the ownership we design into companies does. Left on default, it concentrates.</p>
+            </div>
+          </div>
+          <div data-reveal="up" data-pillar="" style="border-top:0.5px solid color-mix(in oklab,var(--border) 75%,transparent);border-bottom:0.5px solid color-mix(in oklab,var(--border) 75%,transparent);padding:clamp(2.5rem,5vw,4rem) 0;display:grid;grid-template-columns:auto 1fr;gap:clamp(1.5rem,3vw,3rem);align-items:start;">
+            <span style="font-family:'Courier New',monospace;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:200;line-height:1;color:color-mix(in oklab,var(--fg) 13%,transparent);">03</span>
+            <div>
+              <h3 style="font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:300;letter-spacing:-0.02em;margin-bottom:0.5rem;">Stewardship as Strategy</h3>
+              <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 42%,transparent);display:block;margin-bottom:1.5rem;">Why Distribution Is Sturdier</span>
+              <p style="font-size:clamp(0.95rem,1.1vw,1.05rem);font-weight:300;line-height:1.8;color:var(--mfg);max-width:34rem;">Shared ownership isn't only fairer, it's harder to break. Companies whose value is widely held resist capture, keep their people, and tend to outlast the founders who started them.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── LEADERSHIP ───────────── -->
+  <section data-section="" data-name="Divergence" id="divergence" style="position:relative;z-index:2;padding:clamp(6rem,15vh,11rem) 0;">
+    <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);"></div>
+    <div style="width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);">
+      <div style="max-width:46rem;margin:0 auto clamp(3.5rem,7vh,5.5rem);text-align:center;">
+        <span data-reveal="" style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1.5rem;">Concentrate or Distribute</span>
+        <h2 data-reveal="" data-d="100" style="font-family:'Montserrat',Inter,system-ui,sans-serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;line-height:1.1;margin-bottom:1.5rem;">Two Futures</h2>
+        <p data-reveal="" data-d="200" style="font-size:clamp(0.95rem,1.1vw,1.1rem);font-weight:300;line-height:1.8;color:color-mix(in oklab,var(--fg) 58%,transparent);">One technology, two destinations. The ownership we choose now decides which one compounds.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1px;background:color-mix(in oklab,var(--border) 80%,transparent);border:0.5px solid color-mix(in oklab,var(--border) 80%,transparent);">
+        <div data-reveal="" data-future="" style="background:var(--card);padding:clamp(2.2rem,4vw,3.5rem);transition:background .6s ease;" style-hover="background:color-mix(in oklab,var(--fg) 4%,var(--card));">
+          <div style="display:flex;align-items:baseline;gap:1rem;margin-bottom:2rem;">
+            <span style="font-family:'Courier New',monospace;font-size:0.8rem;color:color-mix(in oklab,var(--fg) 35%,transparent);">01</span>
+            <span style="font-size:0.6rem;font-weight:500;letter-spacing:0.26em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 40%,transparent);">The Default Path</span>
+          </div>
+          <h3 style="font-family:'Montserrat',Inter,system-ui,sans-serif;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:600;letter-spacing:0.03em;text-transform:uppercase;margin-bottom:1.25rem;">Concentration</h3>
+          <p style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(1.1rem,1.6vw,1.4rem);line-height:1.5;color:color-mix(in oklab,var(--fg) 66%,transparent);margin-bottom:2.25rem;">The gains collect with the few who happen to hold the equity.</p>
+          <div style="display:flex;flex-direction:column;gap:0.9rem;"><div style="display:flex;align-items:center;gap:0.9rem;font-size:clamp(0.9rem,1.05vw,1rem);font-weight:300;color:color-mix(in oklab,var(--fg) 60%,transparent);"><span style="width:5px;height:5px;border-radius:50%;flex:none;background:color-mix(in oklab,var(--fg) 30%,transparent);"></span>Brittleness under shock</div><div style="display:flex;align-items:center;gap:0.9rem;font-size:clamp(0.9rem,1.05vw,1rem);font-weight:300;color:color-mix(in oklab,var(--fg) 60%,transparent);"><span style="width:5px;height:5px;border-radius:50%;flex:none;background:color-mix(in oklab,var(--fg) 30%,transparent);"></span>Captured, narrowing value</div><div style="display:flex;align-items:center;gap:0.9rem;font-size:clamp(0.9rem,1.05vw,1rem);font-weight:300;color:color-mix(in oklab,var(--fg) 60%,transparent);"><span style="width:5px;height:5px;border-radius:50%;flex:none;background:color-mix(in oklab,var(--fg) 30%,transparent);"></span>Institutions that fracture</div></div>
+        </div>
+        <div data-reveal="" data-d="150" data-future="" style="background:var(--card);padding:clamp(2.2rem,4vw,3.5rem);border-top:2px solid var(--gold);transition:background .6s ease;" style-hover="background:color-mix(in oklab,var(--gold) 6%,var(--card));">
+          <div style="display:flex;align-items:baseline;gap:1rem;margin-bottom:2rem;">
+            <span style="font-family:'Courier New',monospace;font-size:0.8rem;color:var(--gold);">02</span>
+            <span style="font-size:0.6rem;font-weight:500;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold);">The Stewardship Path</span>
+          </div>
+          <h3 style="font-family:'Montserrat',Inter,system-ui,sans-serif;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:600;letter-spacing:0.03em;text-transform:uppercase;margin-bottom:1.25rem;">Distribution</h3>
+          <p style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(1.1rem,1.6vw,1.4rem);line-height:1.5;color:color-mix(in oklab,var(--fg) 72%,transparent);margin-bottom:2.25rem;">The gains are shared with the many who do the building.</p>
+          <div style="display:flex;flex-direction:column;gap:0.9rem;"><div style="display:flex;align-items:center;gap:0.9rem;font-size:clamp(0.9rem,1.05vw,1rem);font-weight:300;color:color-mix(in oklab,var(--fg) 60%,transparent);"><span style="width:5px;height:5px;border-radius:50%;flex:none;background:var(--gold);"></span>Resilience under shock</div><div style="display:flex;align-items:center;gap:0.9rem;font-size:clamp(0.9rem,1.05vw,1rem);font-weight:300;color:color-mix(in oklab,var(--fg) 60%,transparent);"><span style="width:5px;height:5px;border-radius:50%;flex:none;background:var(--gold);"></span>Shared, compounding value</div><div style="display:flex;align-items:center;gap:0.9rem;font-size:clamp(0.9rem,1.05vw,1rem);font-weight:300;color:color-mix(in oklab,var(--fg) 60%,transparent);"><span style="width:5px;height:5px;border-radius:50%;flex:none;background:var(--gold);"></span>Institutions that endure</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-section="" data-name="Approach" id="approach" style="position:relative;z-index:2;padding:clamp(6rem,15vh,11rem) 0;background:color-mix(in oklab,var(--muted) 35%,var(--bg));">
+    <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);"></div>
+    <div style="width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);">
+      <div data-grid-2="" style="display:grid;grid-template-columns:repeat(12,1fr);gap:2rem;margin-bottom:clamp(3.5rem,7vh,5rem);">
+        <div style="grid-column:1 / span 5;">
+          <span data-reveal="" style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1.5rem;">How We Partner</span>
+          <h2 data-reveal="" data-d="100" style="font-family:'Montserrat',Inter,system-ui,sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;letter-spacing:0.035em;text-transform:uppercase;line-height:1.12;">The Practice of Stewardship</h2>
+        </div>
+        <div style="grid-column:7 / span 6;display:flex;align-items:flex-end;">
+          <p data-reveal="" data-d="200" style="font-size:clamp(0.95rem,1.1vw,1.1rem);font-weight:300;line-height:1.8;color:color-mix(in oklab,var(--fg) 58%,transparent);">Money is the easy part. The harder work is structural — how ownership gets split, how decisions get made, and how the upside compounds for everyone who builds it. That's where we spend our time.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(2rem,3vw,3rem);">
+        <div data-reveal="" style="border-top:0.5px solid color-mix(in oklab,var(--border) 75%,transparent);padding-top:1.75rem;">
+          <span style="font-family:'Courier New',monospace;font-size:2.1rem;font-weight:200;line-height:1;color:color-mix(in oklab,var(--fg) 15%,transparent);">01</span>
+          <h3 style="font-family:'Montserrat',Inter,system-ui,sans-serif;font-size:clamp(1.05rem,1.5vw,1.3rem);font-weight:600;letter-spacing:0.02em;text-transform:uppercase;margin:1.1rem 0 0.8rem;">Patient Capital</h3>
+          <p style="font-size:clamp(0.9rem,1.05vw,1rem);font-weight:300;line-height:1.75;color:color-mix(in oklab,var(--fg) 58%,transparent);">We hold for decades, not exit windows. Good companies compound — we'd rather not interrupt them to manufacture a return.</p>
+        </div>
+        <div data-reveal="" data-d="90" style="border-top:0.5px solid color-mix(in oklab,var(--border) 75%,transparent);padding-top:1.75rem;">
+          <span style="font-family:'Courier New',monospace;font-size:2.1rem;font-weight:200;line-height:1;color:color-mix(in oklab,var(--fg) 15%,transparent);">02</span>
+          <h3 style="font-family:'Montserrat',Inter,system-ui,sans-serif;font-size:clamp(1.05rem,1.5vw,1.3rem);font-weight:600;letter-spacing:0.02em;text-transform:uppercase;margin:1.1rem 0 0.8rem;">Ownership by Design</h3>
+          <p style="font-size:clamp(0.9rem,1.05vw,1rem);font-weight:300;line-height:1.75;color:color-mix(in oklab,var(--fg) 58%,transparent);">Broad ownership works when it's built in at incorporation, not bolted on at exit. We help set it up right the first time.</p>
+        </div>
+        <div data-reveal="" data-d="180" style="border-top:0.5px solid color-mix(in oklab,var(--border) 75%,transparent);padding-top:1.75rem;">
+          <span style="font-family:'Courier New',monospace;font-size:2.1rem;font-weight:200;line-height:1;color:color-mix(in oklab,var(--fg) 15%,transparent);">03</span>
+          <h3 style="font-family:'Montserrat',Inter,system-ui,sans-serif;font-size:clamp(1.05rem,1.5vw,1.3rem);font-weight:600;letter-spacing:0.02em;text-transform:uppercase;margin:1.1rem 0 0.8rem;">Governance as Infrastructure</h3>
+          <p style="font-size:clamp(0.9rem,1.05vw,1rem);font-weight:300;line-height:1.75;color:color-mix(in oklab,var(--fg) 58%,transparent);">We help wire decision rights into how a company runs — so resilience is structural, not left to good intentions.</p>
+        </div>
+        <div data-reveal="" data-d="270" style="border-top:0.5px solid color-mix(in oklab,var(--border) 75%,transparent);padding-top:1.75rem;">
+          <span style="font-family:'Courier New',monospace;font-size:2.1rem;font-weight:200;line-height:1;color:color-mix(in oklab,var(--fg) 15%,transparent);">04</span>
+          <h3 style="font-family:'Montserrat',Inter,system-ui,sans-serif;font-size:clamp(1.05rem,1.5vw,1.3rem);font-weight:600;letter-spacing:0.02em;text-transform:uppercase;margin:1.1rem 0 0.8rem;">Conviction over Consensus</h3>
+          <p style="font-size:clamp(0.9rem,1.05vw,1rem);font-weight:300;line-height:1.75;color:color-mix(in oklab,var(--fg) 58%,transparent);">We're comfortable being early and alone, as long as the reasoning holds and the people are serious.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-section="" data-name="Leadership" id="leadership" style="position:relative;z-index:2;padding:clamp(6rem,15vh,11rem) 0;">
+    <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);"></div>
+    <div style="width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);">
+      <div style="text-align:center;margin-bottom:clamp(4rem,9vh,7rem);">
+        <span data-reveal="up" style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 45%,transparent);display:block;margin-bottom:1.5rem;">Stewards of Capital &amp; Purpose</span>
+        <h2 data-reveal="up" data-d="100" style="font-family:'Montserrat',Inter,system-ui,sans-serif;font-size:clamp(2.1rem,5vw,4rem);font-weight:600;letter-spacing:0.045em;text-transform:uppercase;">Leadership</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(3rem,6vw,6rem);max-width:64rem;margin:0 auto;">
+        <div data-reveal="up" style="text-align:center;">
+          <div style="position:relative;width:clamp(11rem,16vw,15rem);height:clamp(11rem,16vw,15rem);margin:0 auto 2.5rem;">
+            <div style="position:absolute;inset:0;border:0.5px solid var(--border);transition:border-color .7s;"></div>
+            <div style="position:absolute;inset:16px;background:color-mix(in oklab,var(--muted) 55%,var(--bg));display:flex;align-items:center;justify-content:center;">
+              <span style="font-size:clamp(2.6rem,4vw,3.4rem);font-weight:200;letter-spacing:0.05em;color:color-mix(in oklab,var(--fg) 13%,transparent);">MG</span>
+            </div>
+            <div style="position:absolute;top:-2px;left:-2px;width:14px;height:14px;border-top:1px solid color-mix(in oklab,var(--fg) 22%,transparent);border-left:1px solid color-mix(in oklab,var(--fg) 22%,transparent);"></div>
+            <div style="position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-top:1px solid color-mix(in oklab,var(--fg) 22%,transparent);border-right:1px solid color-mix(in oklab,var(--fg) 22%,transparent);"></div>
+            <div style="position:absolute;bottom:-2px;left:-2px;width:14px;height:14px;border-bottom:1px solid color-mix(in oklab,var(--fg) 22%,transparent);border-left:1px solid color-mix(in oklab,var(--fg) 22%,transparent);"></div>
+            <div style="position:absolute;bottom:-2px;right:-2px;width:14px;height:14px;border-bottom:1px solid color-mix(in oklab,var(--fg) 22%,transparent);border-right:1px solid color-mix(in oklab,var(--fg) 22%,transparent);"></div>
+          </div>
+          <h3 style="font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:300;letter-spacing:-0.02em;margin-bottom:0.5rem;">Mehran Granfar</h3>
+          <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 42%,transparent);display:block;margin-bottom:1.75rem;">General Partner</span>
+          <blockquote style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(1.1rem,1.6vw,1.35rem);line-height:1.5;color:color-mix(in oklab,var(--fg) 60%,transparent);max-width:24rem;margin:0 auto;">"The real question isn't whether to adopt AI. It's which values you encode while you do."</blockquote>
+        </div>
+        <div data-reveal="up" data-d="150" style="text-align:center;">
+          <div style="position:relative;width:clamp(11rem,16vw,15rem);height:clamp(11rem,16vw,15rem);margin:0 auto 2.5rem;">
+            <div style="position:absolute;inset:0;border:0.5px solid var(--border);transition:border-color .7s;"></div>
+            <div style="position:absolute;inset:16px;background:color-mix(in oklab,var(--muted) 55%,var(--bg));display:flex;align-items:center;justify-content:center;">
+              <span style="font-size:clamp(2.6rem,4vw,3.4rem);font-weight:200;letter-spacing:0.05em;color:color-mix(in oklab,var(--fg) 13%,transparent);">BL</span>
+            </div>
+            <div style="position:absolute;top:-2px;left:-2px;width:14px;height:14px;border-top:1px solid color-mix(in oklab,var(--fg) 22%,transparent);border-left:1px solid color-mix(in oklab,var(--fg) 22%,transparent);"></div>
+            <div style="position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-top:1px solid color-mix(in oklab,var(--fg) 22%,transparent);border-right:1px solid color-mix(in oklab,var(--fg) 22%,transparent);"></div>
+            <div style="position:absolute;bottom:-2px;left:-2px;width:14px;height:14px;border-bottom:1px solid color-mix(in oklab,var(--fg) 22%,transparent);border-left:1px solid color-mix(in oklab,var(--fg) 22%,transparent);"></div>
+            <div style="position:absolute;bottom:-2px;right:-2px;width:14px;height:14px;border-bottom:1px solid color-mix(in oklab,var(--fg) 22%,transparent);border-right:1px solid color-mix(in oklab,var(--fg) 22%,transparent);"></div>
+          </div>
+          <h3 style="font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:300;letter-spacing:-0.02em;margin-bottom:0.5rem;">Bronwyn Leong</h3>
+          <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 42%,transparent);display:block;margin-bottom:1.75rem;">Managing Partner</span>
+          <blockquote style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(1.1rem,1.6vw,1.35rem);line-height:1.5;color:color-mix(in oklab,var(--fg) 60%,transparent);max-width:24rem;margin:0 auto;">"If a company creates extraordinary value, the people who built it should own a real piece of it."</blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── CTA / CONNECT ───────────── -->
+  <section data-section="" data-name="Horizon" id="connect" style="position:relative;z-index:2;background:var(--fg);color:var(--bg);padding:clamp(7rem,16vh,12rem) 0;overflow:hidden;">
+    <div style="position:absolute;inset:0;pointer-events:none;">
+      <div style="position:absolute;top:0;left:25%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,color-mix(in oklab,var(--bg) 12%,transparent),transparent);transform:rotate(-12deg);transform-origin:top;"></div>
+      <div style="position:absolute;top:0;right:33%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,color-mix(in oklab,var(--bg) 12%,transparent),transparent);transform:rotate(12deg);transform-origin:top;"></div>
+      <div style="position:absolute;top:3rem;left:3rem;width:6rem;height:6rem;border-top:1px solid color-mix(in oklab,var(--bg) 12%,transparent);border-left:1px solid color-mix(in oklab,var(--bg) 12%,transparent);"></div>
+      <div style="position:absolute;bottom:3rem;right:3rem;width:6rem;height:6rem;border-bottom:1px solid color-mix(in oklab,var(--bg) 12%,transparent);border-right:1px solid color-mix(in oklab,var(--bg) 12%,transparent);"></div>
+    </div>
+    <div style="position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);">
+      <div style="max-width:56rem;margin:0 auto;text-align:center;">
+        <span data-reveal="up" style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:color-mix(in oklab,var(--bg) 42%,transparent);display:block;margin-bottom:2.5rem;">Start a Conversation</span>
+        <h2 data-reveal="up" data-d="100" style="font-family:'Montserrat',Inter,system-ui,sans-serif;font-size:clamp(2.1rem,5vw,4rem);font-weight:600;line-height:1.12;letter-spacing:0.035em;text-transform:uppercase;margin-bottom:2rem;">Build Something<br><span style="color:color-mix(in oklab,var(--bg) 40%,transparent);">Worth Owning</span></h2>
+        <p data-reveal="up" data-d="200" style="font-size:clamp(0.95rem,1.1vw,1.1rem);font-weight:300;line-height:1.8;color:color-mix(in oklab,var(--bg) 52%,transparent);max-width:38rem;margin:0 auto 3.5rem;">If you're building a company that creates real value — and you want the people who build it to share in it — we'd like to hear from you.</p>
+        <div data-reveal="up" data-d="300" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2rem;">
+          <a href="mailto:contact@arrowsphere.co" style="display:inline-block;padding:1.1rem 2.8rem;font-size:0.72rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;white-space:nowrap;color:var(--fg);background:var(--bg);text-decoration:none;" style-hover="opacity:0.88;">Get in Touch</a>
+          <a href="#thesis" style="display:inline-flex;align-items:center;gap:0.6rem;color:color-mix(in oklab,var(--bg) 55%,transparent);text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;white-space:nowrap;transition:color .5s ease;" style-hover="color:var(--bg);">Read the Thesis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── FOOTER ───────────── -->
+  <footer style="position:relative;z-index:2;background:var(--bg);border-top:0.5px solid var(--border);">
+    <div style="width:100%;max-width:var(--maxw);margin:0 auto;padding:clamp(4rem,10vh,7rem) var(--pad);">
+      <div data-foot-grid="" style="display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(2.5rem,4vw,4rem);">
+        <div style="grid-column:1 / span 4;">
+          <div style="margin-bottom:2rem;color:var(--fg);"><svg viewBox="0 0 580 139" fill="currentColor" role="img" aria-label="Arrowsphere" xmlns="http://www.w3.org/2000/svg" style="height:44px;width:auto;display:block;color:var(--fg);"><path d="M308.468 30.04C311.148 30.0401 313.807 30.4804 316.447 31.3604C319.087 32.2403 321.367 33.4802 323.287 35.0801L319.508 40.4199C318.268 39.3 316.588 38.3801 314.468 37.6602C312.348 36.9402 310.248 36.5801 308.168 36.5801C306.128 36.5801 304.448 37 303.128 37.8398C301.808 38.6798 301.148 39.9598 301.147 41.6797C301.147 43.3597 301.808 44.6601 303.128 45.5801C304.448 46.46 307.248 47.4201 311.527 48.46C315.847 49.4999 319.087 50.96 321.247 52.8398C323.447 54.7198 324.548 57.4998 324.548 61.1797C324.548 64.8197 323.167 67.7796 320.407 70.0596C317.647 72.3395 314.028 73.4804 309.548 73.4805C302.988 73.4805 297.168 71.22 292.088 66.7002L296.527 61.3604C300.767 65.0403 305.168 66.8799 309.728 66.8799C312.008 66.8799 313.808 66.4004 315.128 65.4404C316.488 64.4404 317.168 63.14 317.168 61.54C317.168 59.9 316.527 58.6398 315.247 57.7598C314.007 56.8399 311.847 56.0197 308.768 55.2998C305.688 54.5398 303.347 53.8598 301.747 53.2598C300.147 52.6198 298.727 51.7997 297.487 50.7998C295.007 48.9198 293.768 46.04 293.768 42.1602C293.768 38.2802 295.168 35.2997 297.968 33.2197C300.808 31.0999 304.308 30.04 308.468 30.04ZM197.537 35.3408C197.84 34.9059 198.43 34.7864 198.893 35.0439C199.5 35.3818 199.686 35.4243 200.473 36.1797C202.513 38.0996 204.092 40.3798 205.212 43.0195C206.332 45.6194 206.893 48.4798 206.893 51.5996C206.893 54.7196 206.332 57.6002 205.212 60.2402C204.092 62.88 202.513 65.1602 200.473 67.0801C198.433 69.0001 196.032 70.5001 193.272 71.5801C190.552 72.6601 187.572 73.2002 184.332 73.2002C181.052 73.2002 179.824 72.7998 179.824 72.7998L181.134 66.9932C181.34 66.4362 182.12 66.1457 182.706 66.2451C183.098 66.3116 183.61 66.3604 184.272 66.3604C186.392 66.3603 188.352 66.0002 190.152 65.2803C191.952 64.5603 193.512 63.5397 194.832 62.2197C196.152 60.8597 197.173 59.3 197.893 57.54C198.653 55.7401 199.032 53.7596 199.032 51.5996C199.032 49.4398 198.653 47.4796 197.893 45.7197C197.173 43.9198 195.152 41.2246 195.152 41.2246C194.761 40.9137 194.654 40.3652 194.904 39.9326C195.445 38.9982 196.16 37.6915 196.794 36.5635L197.258 35.7432C197.35 35.6089 197.444 35.4748 197.537 35.3408ZM44.5195 73H36.96L32.7598 63.46H11.7598L7.55957 73H0L18.4805 31.0596H26.04L44.5195 73ZM74.9512 31.0596C81.3512 31.0596 85.9314 32.1398 88.6914 34.2998C91.4513 36.4598 92.831 39.9198 92.8311 44.6797C92.8311 51.5996 89.8113 55.9597 83.7715 57.7598L94.751 73H85.751L75.7314 58.9004H66.4316V73H59.3516V31.0596H74.9512ZM127.604 31.0596C134.004 31.0596 138.584 32.1398 141.344 34.2998C144.104 36.4598 145.483 39.9198 145.483 44.6797C145.483 51.5996 142.464 55.9597 136.424 57.7598L147.403 73H138.403L128.384 58.9004H119.084V73H112.004V31.0596H127.604ZM236.717 61.2402L246.076 31.0596H252.437L261.797 61.2402L272.356 31.0596H279.977L265.336 73H258.316L249.496 44.2598H249.017L240.196 73H233.177L218.536 31.0596H226.156L236.717 61.2402ZM356.7 31.0596C363.06 31.0596 367.7 32.2799 370.62 34.7197C373.54 37.1597 375 40.92 375 46C375 51.08 373.5 54.8002 370.5 57.1602C367.54 59.52 362.98 60.7002 356.82 60.7002H349.381V73H342.301V31.0596H356.7ZM399.396 49.2402H420.216V31.0596H427.296V73H420.216V55.8398H399.396V73H392.316V31.0596H399.396V49.2402ZM477.417 37.7197H455.037V48.8203H475.137V55.1201H455.037V66.3398H478.137V73H447.957V31.0596H477.417V37.7197ZM511.814 31.0596C518.214 31.0596 522.795 32.1398 525.555 34.2998C528.315 36.4598 529.694 39.9199 529.694 44.6797C529.694 51.5996 526.675 55.9597 520.635 57.7598L531.614 73H522.614L512.595 58.9004H503.295V73H496.215V31.0596H511.814ZM578.327 37.7197H555.947V48.8203H576.047V55.1201H555.947V66.3398H579.047V73H548.867V31.0596H578.327V37.7197ZM202.304 25.3018C202.304 25.6096 202.285 25.8333 202.2 26.0469C202.12 26.25 201.985 26.4265 201.82 26.6475C199.378 29.9654 196.905 33.2532 194.572 36.6357L194.107 37.3135C192.408 39.8084 190.625 42.2517 188.845 44.6875C187.063 47.1246 185.283 49.5545 183.583 52.0293C180.184 56.9787 177.112 62.0962 175.009 67.7734L174.937 67.9668H167.652L167.869 67.5371C168.169 66.9417 168.423 66.5459 168.842 66.041C179.912 52.5092 190.646 38.6136 201.777 25.1133L202.304 24.4756V25.3018ZM184.272 30C187.552 30 190.432 30.6095 193.152 31.6895C193.616 31.8708 193.741 32.4306 193.413 32.8047C192.334 34.0344 191.223 35.1487 190.117 36.3721C189.526 37.0261 188.599 37.243 187.739 37.0479C186.692 36.8102 185.773 36.8399 184.272 36.8398C182.153 36.8398 180.193 37.2 178.393 37.9199C176.633 38.6399 175.072 39.68 173.712 41.04C172.392 42.3599 171.353 43.92 170.593 45.7197C169.873 47.4796 169.513 49.4398 169.513 51.5996C169.513 53.1861 169.391 53.6946 169.632 54.6045C169.817 55.3059 169.718 56.0519 169.185 56.5439C167.438 58.1556 163.825 61.1298 163.799 61.1514C163.799 61.1514 163.799 61.1514 163.332 60.2402C162.212 57.6002 161.652 54.7196 161.652 51.5996C161.652 48.4798 162.212 45.6194 163.332 43.0195C164.452 40.3797 166.032 38.0996 168.072 36.1797C170.112 34.2197 172.513 32.7001 175.272 31.6201C178.032 30.5401 181.032 30 184.272 30ZM14.6396 56.9199H29.8799L22.2598 39.6396L14.6396 56.9199ZM349.381 54.2803H357.601C361.521 54.2803 364.18 53.5396 365.58 52.0596C367.02 50.5396 367.74 48.3399 367.74 45.46C367.74 42.54 366.84 40.4803 365.04 39.2803C363.24 38.0803 360.42 37.4805 356.58 37.4805H349.381V54.2803ZM66.4316 52.4805H75.251C79.2509 52.4805 81.9711 51.86 83.4111 50.6201C84.8511 49.3801 85.5713 47.3997 85.5713 44.6797C85.5712 41.92 84.8314 40.04 83.3516 39.04C81.8716 38.0001 79.2314 37.4805 75.4316 37.4805H66.4316V52.4805ZM119.084 52.4805H127.903C131.903 52.4805 134.623 51.86 136.063 50.6201C137.503 49.3801 138.224 47.3997 138.224 44.6797C138.224 41.92 137.484 40.04 136.004 39.04C134.524 38.0001 131.884 37.4805 128.084 37.4805H119.084V52.4805ZM503.295 52.4805H512.114C516.114 52.4805 518.834 51.86 520.274 50.6201C521.714 49.3801 522.435 47.3997 522.435 44.6797C522.435 41.92 521.695 40.04 520.215 39.04C518.735 38.0001 516.095 37.4805 512.295 37.4805H503.295V52.4805ZM216.873 5.875C215.071 10.3768 214.943 11.7896 215.284 13.4863C215.545 14.7838 215.776 15.2798 215.967 15.5967C216.123 15.8563 216.62 16.776 216.858 17.0898L217.486 18.502L215.945 18.3613C212.421 18.0384 209.561 18.7197 206.779 20.8828L204.698 22.5L205.342 19.9453C205.692 18.5539 205.972 16.9814 205.964 15.4668C205.956 13.949 205.658 12.5589 204.923 11.4619L204.079 10.2041L205.586 10.0537C206.815 9.93102 207.69 9.88126 208.52 9.77734C209.311 9.67813 209.943 9.5407 210.552 9.2793C211.774 8.75441 213.074 7.66462 215.332 4.95703L219 0.558594L216.873 5.875Z" fill="currentColor"></path><g opacity="0.7"><path d="M21.7828 138.556V107.444H27.5384V138.556H21.7828ZM0 138.556V107.444H5.75561V138.556H0ZM5.2686 125.222V120.289H22.2255V125.222H5.2686Z" fill="currentColor"></path><path d="M57.0058 139C54.5855 139 52.3571 138.6 50.3205 137.8C48.2839 137 46.5129 135.889 45.0076 134.467C43.5023 133.015 42.3364 131.326 41.51 129.4C40.6835 127.444 40.2703 125.311 40.2703 123C40.2703 120.689 40.6835 118.57 41.51 116.644C42.3364 114.689 43.5023 113 45.0076 111.578C46.5129 110.126 48.2839 109 50.3205 108.2C52.3571 107.4 54.5708 107 56.9616 107C59.3819 107 61.5956 107.4 63.6027 108.2C65.6393 109 67.4102 110.126 68.9155 111.578C70.4208 113 71.5867 114.689 72.4132 116.644C73.2396 118.57 73.6528 120.689 73.6528 123C73.6528 125.311 73.2396 127.444 72.4132 129.4C71.5867 131.356 70.4208 133.044 68.9155 134.467C67.4102 135.889 65.6393 137 63.6027 137.8C61.5956 138.6 59.3966 139 57.0058 139ZM56.9616 133.933C58.5259 133.933 59.9722 133.667 61.3004 133.133C62.6286 132.6 63.7798 131.844 64.7538 130.867C65.7278 129.859 66.4805 128.704 67.0118 127.4C67.5726 126.067 67.853 124.6 67.853 123C67.853 121.4 67.5726 119.948 67.0118 118.644C66.4805 117.311 65.7278 116.156 64.7538 115.178C63.7798 114.17 62.6286 113.4 61.3004 112.867C59.9722 112.333 58.5259 112.067 56.9616 112.067C55.3972 112.067 53.9509 112.333 52.6227 112.867C51.324 113.4 50.1729 114.17 49.1693 115.178C48.1953 116.156 47.4279 117.311 46.8671 118.644C46.3358 119.948 46.0702 121.4 46.0702 123C46.0702 124.57 46.3358 126.022 46.8671 127.356C47.4279 128.689 48.1953 129.859 49.1693 130.867C50.1434 131.844 51.2945 132.6 52.6227 133.133C53.9509 133.667 55.3972 133.933 56.9616 133.933Z" fill="currentColor"></path><path d="M86.3948 138.556V107.444H92.1504V133.667H108.355V138.556H86.3948Z" fill="currentColor"></path><path d="M119.54 138.556V107.444H133.088C136.452 107.444 139.404 108.096 141.942 109.4C144.481 110.704 146.458 112.511 147.875 114.822C149.292 117.133 150 119.859 150 123C150 126.111 149.292 128.837 147.875 131.178C146.458 133.489 144.481 135.296 141.942 136.6C139.404 137.904 136.452 138.556 133.088 138.556H119.54ZM125.295 133.667H132.822C135.124 133.667 137.131 133.222 138.843 132.333C140.555 131.444 141.869 130.2 142.784 128.6C143.728 127 144.2 125.133 144.2 123C144.2 120.837 143.728 118.97 142.784 117.4C141.869 115.8 140.555 114.556 138.843 113.667C137.131 112.778 135.124 112.333 132.822 112.333H125.295V133.667Z" fill="currentColor"></path><path d="M162.759 138.556V107.444H168.514V138.556H162.759Z" fill="currentColor"></path><path d="M183.538 138.556V107.444H188.275L207.712 131.4H205.365V107.444H211.076V138.556H206.339L186.903 114.6H189.249V138.556H183.538Z" fill="currentColor"></path><path d="M240.5 139C238.079 139 235.851 138.615 233.814 137.844C231.807 137.044 230.051 135.933 228.546 134.511C227.04 133.059 225.874 131.356 225.048 129.4C224.222 127.444 223.808 125.311 223.808 123C223.808 120.689 224.222 118.556 225.048 116.6C225.874 114.644 227.04 112.956 228.546 111.533C230.08 110.081 231.866 108.97 233.903 108.2C235.939 107.4 238.168 107 240.588 107C243.215 107 245.576 107.43 247.672 108.289C249.797 109.148 251.583 110.407 253.029 112.067L249.399 115.622C248.189 114.407 246.875 113.519 245.458 112.956C244.071 112.363 242.536 112.067 240.854 112.067C239.23 112.067 237.725 112.333 236.338 112.867C234.951 113.4 233.755 114.156 232.752 115.133C231.748 116.111 230.966 117.267 230.405 118.6C229.874 119.933 229.608 121.4 229.608 123C229.608 124.57 229.874 126.022 230.405 127.356C230.966 128.689 231.748 129.859 232.752 130.867C233.755 131.844 234.936 132.6 236.294 133.133C237.651 133.667 239.157 133.933 240.81 133.933C242.344 133.933 243.82 133.696 245.237 133.222C246.683 132.719 248.056 131.889 249.354 130.733L252.631 135.044C251.007 136.348 249.118 137.341 246.964 138.022C244.838 138.674 242.684 139 240.5 139ZM252.631 135.044L247.185 134.289V122.644H252.631V135.044Z" fill="currentColor"></path><path d="M276.47 139C274.05 139 271.733 138.659 269.519 137.978C267.306 137.267 265.55 136.363 264.251 135.267L266.243 130.778C267.483 131.756 269.018 132.57 270.848 133.222C272.678 133.874 274.552 134.2 276.47 134.2C278.094 134.2 279.407 134.022 280.411 133.667C281.414 133.311 282.152 132.837 282.625 132.244C283.097 131.622 283.333 130.926 283.333 130.156C283.333 129.207 282.993 128.452 282.315 127.889C281.636 127.296 280.75 126.837 279.658 126.511C278.596 126.156 277.4 125.83 276.072 125.533C274.773 125.237 273.46 124.896 272.132 124.511C270.833 124.096 269.638 123.578 268.545 122.956C267.483 122.304 266.612 121.444 265.933 120.378C265.254 119.311 264.915 117.948 264.915 116.289C264.915 114.6 265.358 113.059 266.243 111.667C267.158 110.244 268.531 109.119 270.361 108.289C272.22 107.43 274.567 107 277.4 107C279.26 107 281.104 107.237 282.934 107.711C284.764 108.185 286.358 108.867 287.716 109.756L285.901 114.244C284.514 113.415 283.082 112.807 281.606 112.422C280.13 112.007 278.714 111.8 277.356 111.8C275.762 111.8 274.463 111.993 273.46 112.378C272.486 112.763 271.763 113.267 271.29 113.889C270.848 114.511 270.626 115.222 270.626 116.022C270.626 116.97 270.951 117.741 271.6 118.333C272.279 118.896 273.15 119.341 274.212 119.667C275.305 119.993 276.515 120.319 277.843 120.644C279.171 120.941 280.485 121.281 281.783 121.667C283.112 122.052 284.307 122.556 285.37 123.178C286.462 123.8 287.332 124.644 287.982 125.711C288.661 126.778 289 128.126 289 129.756C289 131.415 288.542 132.956 287.627 134.378C286.742 135.77 285.37 136.896 283.51 137.756C281.651 138.585 279.304 139 276.47 139Z" fill="currentColor"></path></g></svg></div>
+          <p style="font-size:clamp(0.95rem,1.1vw,1.05rem);font-weight:300;line-height:1.8;color:color-mix(in oklab,var(--fg) 50%,transparent);max-width:22rem;margin-bottom:2rem;">A private family office backing the technology companies of the AI era — and the people who build them.</p>
+          <div style="display:flex;align-items:center;gap:1.5rem;">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:color-mix(in oklab,var(--fg) 42%,transparent);font-size:0.72rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;transition:color .5s;" style-hover="color:var(--fg);">LinkedIn</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:color-mix(in oklab,var(--fg) 42%,transparent);font-size:0.72rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;transition:color .5s;" style-hover="color:var(--fg);">Twitter</a>
+          </div>
+        </div>
+        <div style="grid-column:7 / span 2;">
+          <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 32%,transparent);display:block;margin-bottom:2rem;">Navigate</span>
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <a href="#thesis" style="text-decoration:none;color:color-mix(in oklab,var(--fg) 50%,transparent);font-weight:300;transition:color .5s;" style-hover="color:var(--fg);">Thesis</a>
+            <a href="#leadership" style="text-decoration:none;color:color-mix(in oklab,var(--fg) 50%,transparent);font-weight:300;transition:color .5s;" style-hover="color:var(--fg);">Leadership</a>
+            <a href="#connect" style="text-decoration:none;color:color-mix(in oklab,var(--fg) 50%,transparent);font-weight:300;transition:color .5s;" style-hover="color:var(--fg);">Contact</a>
+          </div>
+        </div>
+        <div style="grid-column:10 / span 3;">
+          <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 32%,transparent);display:block;margin-bottom:2rem;">Contact</span>
+          <a href="mailto:contact@arrowsphere.co" style="text-decoration:none;color:color-mix(in oklab,var(--fg) 50%,transparent);font-weight:300;display:block;margin-bottom:1rem;transition:color .5s;" style-hover="color:var(--fg);">contact@arrowsphere.co</a>
+          <span style="color:color-mix(in oklab,var(--fg) 32%,transparent);font-weight:300;line-height:1.7;display:block;">Level 1, Innovation One<br>DIFC, Dubai, UAE</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:0.5px solid color-mix(in oklab,var(--border) 60%,transparent);">
+      <div style="width:100%;max-width:var(--maxw);margin:0 auto;padding:2rem var(--pad);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
+        <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 30%,transparent);">© 2026 Arrowsphere Holdings Limited</span>
+        <div style="display:flex;align-items:center;gap:2rem;">
+          <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 30%,transparent);">Privacy</span>
+          <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 30%,transparent);">Terms</span>
+          <span style="font-size:0.62rem;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:color-mix(in oklab,var(--fg) 30%,transparent);">Private Family Office</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;oklch(0.72 0.11 80)&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;sphereDensity&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Balanced&quot;,&quot;options&quot;:[&quot;Sparse&quot;,&quot;Balanced&quot;,&quot;Dense&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;startTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Light&quot;,&quot;options&quot;:[&quot;Light&quot;,&quot;Dark&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  setRoot = (el) => { this.root = el; };
+
+  renderVals() {
+    return { setRoot: this.setRoot, toggleTheme: this.toggleTheme, openMenu: this.openMenu, closeMenu: this.closeMenu };
+  }
+
+  themes = {
+    light: { '--bg':'oklch(0.98 0.005 85)','--fg':'oklch(0.16 0.012 60)','--muted':'oklch(0.94 0.004 85)','--mfg':'oklch(0.46 0.01 60)','--border':'oklch(0.86 0.008 80)','--card':'oklch(0.995 0.003 85)' },
+    dark:  { '--bg':'oklch(0.09 0.012 60)','--fg':'oklch(0.95 0.005 85)','--muted':'oklch(0.17 0.01 60)','--mfg':'oklch(0.64 0.008 80)','--border':'oklch(0.24 0.012 60)','--card':'oklch(0.13 0.012 60)' }
+  };
+
+  componentDidMount() {
+    const start = (this.props.startTheme || 'Light').toLowerCase();
+    let stored = null;
+    try { stored = localStorage.getItem('arrowsphere-theme'); } catch (e) {}
+    this.theme = (stored === 'dark' || stored === 'light') ? stored : start;
+    this.accent = this.props.accent || 'oklch(0.72 0.11 80)';
+    this.applyTheme(this.theme);
+    this.initReveals();
+    this.initSphere();
+    this.initScroll();
+    this._onResize = () => { if (this._resize) this._resize(); if (this.onScroll) this.onScroll(); if (window.innerWidth > 900 && this._menuOpen) this.closeMenu(); };
+    window.addEventListener('resize', this._onResize);
+    this._onKey = (e) => { if (e.key === 'Escape') this.closeMenu(); };
+    window.addEventListener('keydown', this._onKey);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    if (this._onScrollListener) window.removeEventListener('scroll', this._onScrollListener);
+    if (this._onMouse) window.removeEventListener('mousemove', this._onMouse);
+    cancelAnimationFrame(this._raf);
+    cancelAnimationFrame(this._revRaf);
+    if (this._revIO) this._revIO.disconnect();
+    if (this._onKey) window.removeEventListener('keydown', this._onKey);
+    document.documentElement.style.overflow = '';
+  }
+
+  tween(dur, onUpdate, onDone) {
+    const start = performance.now();
+    const step = () => {
+      const t = Math.min(1, (performance.now() - start) / dur);
+      onUpdate(t);
+      if (t < 1) requestAnimationFrame(step); else if (onDone) onDone();
+    };
+    requestAnimationFrame(step);
+  }
+
+  openMenu = () => {
+    const m = this.root && this.root.querySelector('[data-menu]');
+    if (!m || this._menuOpen) return;
+    this._menuOpen = true;
+    m.style.display = 'flex';
+    m.style.opacity = '0';
+    document.documentElement.style.overflow = 'hidden';
+    const items = Array.from(m.querySelectorAll('[data-menu-item]'));
+    items.forEach((it) => { it.style.opacity = '0'; it.style.transform = 'translateY(30px)'; });
+    this.tween(420, (t) => { m.style.opacity = String(1 - Math.pow(1 - t, 3)); });
+    const ease = (t) => 1 - Math.pow(1 - t, 4);
+    const t0 = performance.now(), base = 140, stag = 75, dur = 560;
+    const loop = () => {
+      if (!this._menuOpen) return;
+      const now = performance.now();
+      let done = true;
+      items.forEach((it, i) => {
+        const t = Math.max(0, Math.min(1, (now - t0 - base - i * stag) / dur));
+        const e = ease(t);
+        it.style.opacity = String(e);
+        it.style.transform = 'translateY(' + ((1 - e) * 30) + 'px)';
+        if (t < 1) done = false;
+      });
+      if (!done) requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  };
+
+  closeMenu = () => {
+    const m = this.root && this.root.querySelector('[data-menu]');
+    if (!m || !this._menuOpen) return;
+    this._menuOpen = false;
+    document.documentElement.style.overflow = '';
+    this.tween(280, (t) => { m.style.opacity = String(1 - t); }, () => { if (!this._menuOpen) m.style.display = 'none'; });
+  };
+
+
+  applyTheme(theme) {
+    if (!this.root) return;
+    const t = this.themes[theme] || this.themes.light;
+    Object.keys(t).forEach((k) => this.root.style.setProperty(k, t[k]));
+    this.root.style.setProperty('--gold', this.accent);
+    this.theme = theme;
+    const mark = this.root.querySelector('[data-toggle-mark]');
+    if (mark) mark.style.transform = theme === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
+    this.dot = theme === 'dark' ? [236, 233, 227] : [26, 24, 20];
+  }
+
+  toggleTheme = () => {
+    const next = this.theme === 'dark' ? 'light' : 'dark';
+    this.applyTheme(next);
+    try { localStorage.setItem('arrowsphere-theme', next); } catch (e) {}
+  };
+
+  initReveals() {
+    const els = Array.from(this.root.querySelectorAll('[data-reveal]'));
+    const DIST = 44, DUR = 1150;
+    els.forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(' + DIST + 'px)';
+      el.style.willChange = 'opacity, transform';
+      el._rev = { state: 'hidden', delay: Number(el.getAttribute('data-d')) || 0 };
+    });
+    const ease = (t) => 1 - Math.pow(1 - t, 4.5);
+    const revealEl = (el) => {
+      if (!el._rev || el._rev.state !== 'hidden') return;
+      el._rev.state = 'show';
+      const start = performance.now() + (el._rev.delay || 0);
+      const step = () => {
+        const t = Math.max(0, Math.min(1, (performance.now() - start) / DUR));
+        const e = ease(t);
+        el.style.opacity = String(e < 0 ? 0 : e);
+        el.style.transform = 'translateY(' + ((1 - e) * DIST) + 'px)';
+        if (t < 1) requestAnimationFrame(step);
+        else { el.style.willChange = 'auto'; el.style.transform = 'none'; el.style.opacity = '1'; }
+      };
+      requestAnimationFrame(step);
+    };
+    this._revealEl = revealEl;
+    if (!('IntersectionObserver' in window)) { els.forEach(revealEl); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) { revealEl(en.target); io.unobserve(en.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach((e) => io.observe(e));
+    this._revIO = io;
+    setTimeout(() => els.forEach(revealEl), 4000);
+  }
+
+  initSphere() {
+    const canvas = this.root.querySelector('[data-sphere]');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const densMap = { Sparse: 520, Balanced: 840, Dense: 1200 };
+    const N = densMap[this.props.sphereDensity] || 840;
+    const pts = [];
+    const gr = Math.PI * (3 - Math.sqrt(5));
+    for (let i = 0; i < N; i++) {
+      const y = 1 - (i / (N - 1)) * 2;
+      const rad = Math.sqrt(Math.max(0, 1 - y * y));
+      const th = gr * i;
+      pts.push([Math.cos(th) * rad, y, Math.sin(th) * rad]);
+    }
+    const rings = [{ tilt: 0.45 }, { tilt: 1.15 }, { tilt: -0.5 }];
+    let W = 0, H = 0;
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const r = canvas.getBoundingClientRect();
+      W = r.width; H = r.height;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    this._resize = resize; resize();
+    this.angle = 0; this.tiltX = 0; this.tiltY = 0; this.mx = 0; this.my = 0;
+    if (this.heroFade == null) this.heroFade = 1;
+    this._onMouse = (e) => {
+      this.mx = (e.clientX / window.innerWidth - 0.5) * 2;
+      this.my = (e.clientY / window.innerHeight - 0.5) * 2;
+    };
+    window.addEventListener('mousemove', this._onMouse);
+
+    const loop = () => {
+      this._raf = requestAnimationFrame(loop);
+      if (this.heroFade <= 0.015) { ctx.clearRect(0, 0, W, H); return; }
+      this.angle += 0.0017;
+      this.tiltY += (this.mx * 0.45 - this.tiltY) * 0.04;
+      this.tiltX += (-this.my * 0.3 - this.tiltX) * 0.04;
+      ctx.clearRect(0, 0, W, H);
+      const cx = W / 2, cy = H * 0.47, R = Math.min(W, H) * 0.34;
+      const a = this.angle + this.tiltY, b = this.tiltX;
+      const ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(b), sb = Math.sin(b);
+      const proj = (x, y, z) => {
+        const x1 = x * ca + z * sa, z1 = -x * sa + z * ca;
+        const y2 = y * cb - z1 * sb, z2 = y * sb + z1 * cb;
+        return [cx + x1 * R, cy + y2 * R, z2];
+      };
+      const dr = this.dot[0], dg = this.dot[1], db = this.dot[2], f = this.heroFade;
+      ctx.lineWidth = 0.6;
+      rings.forEach((rg) => {
+        ctx.beginPath();
+        for (let k = 0; k <= 84; k++) {
+          const t = k / 84 * Math.PI * 2;
+          const rx = Math.cos(t), rzc = Math.sin(t);
+          const ry = rzc * Math.sin(rg.tilt), rz2 = rzc * Math.cos(rg.tilt);
+          const p = proj(rx, ry, rz2);
+          if (k === 0) ctx.moveTo(p[0], p[1]); else ctx.lineTo(p[0], p[1]);
+        }
+        ctx.strokeStyle = 'rgba(' + dr + ',' + dg + ',' + db + ',' + (0.06 * f) + ')';
+        ctx.stroke();
+      });
+      for (let i = 0; i < pts.length; i++) {
+        const p = proj(pts[i][0], pts[i][1], pts[i][2]);
+        const base = (p[2] + 1) / 2;
+        const alpha = (0.05 + base * 0.5) * f;
+        const size = 0.5 + base * 1.7;
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(' + dr + ',' + dg + ',' + db + ',' + alpha + ')';
+        ctx.arc(p[0], p[1], size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      const gt = this.angle * 1.7;
+      const gp = proj(Math.cos(gt), Math.sin(gt * 0.6) * 0.3, Math.sin(gt));
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(201,166,96,' + (0.85 * f) + ')';
+      ctx.arc(gp[0], gp[1], 2.4, 0, Math.PI * 2);
+      ctx.fill();
+    };
+    loop();
+  }
+
+  initScroll() {
+    const root = this.root;
+    const progress = root.querySelector('[data-progress]');
+    const header = root.querySelector('[data-header]');
+    const heroContent = root.querySelector('[data-hero-content]');
+    const manifesto = root.querySelector('[data-manifesto]');
+    const words = Array.from(root.querySelectorAll('[data-word]'));
+    const sections = Array.from(root.querySelectorAll('[data-section]'));
+    const cNum = root.querySelector('[data-counter-num]');
+    const cName = root.querySelector('[data-counter-name]');
+    const cTotal = root.querySelector('[data-counter-total]');
+    if (cTotal) cTotal.textContent = String(sections.length).padStart(2, '0');
+    const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const sy = window.scrollY || window.pageYOffset;
+      const wh = window.innerHeight;
+      const docH = document.documentElement.scrollHeight - wh;
+      if (progress) progress.style.width = (clamp(sy / (docH || 1), 0, 1) * 100) + '%';
+      if (header) {
+        if (sy > 40) {
+          header.style.background = 'color-mix(in oklab, var(--bg) 82%, transparent)';
+          header.style.backdropFilter = 'blur(18px)';
+          header.style.webkitBackdropFilter = 'blur(18px)';
+          header.style.borderBottomColor = 'var(--border)';
+        } else {
+          header.style.background = 'transparent';
+          header.style.backdropFilter = 'none';
+          header.style.webkitBackdropFilter = 'none';
+          header.style.borderBottomColor = 'transparent';
+        }
+      }
+      const hp = clamp(sy / wh, 0, 1);
+      this.heroFade = 1 - hp;
+      if (heroContent) {
+        heroContent.style.transform = 'translateY(' + (sy * 0.22) + 'px)';
+        heroContent.style.opacity = String(clamp(1 - hp * 1.15, 0, 1));
+      }
+      if (manifesto && words.length) {
+        const r = manifesto.getBoundingClientRect();
+        const total = r.height - wh;
+        const p = clamp((-r.top) / (total || 1), 0, 1);
+        const lit = Math.round(clamp((p - 0.05) / 0.5, 0, 1) * words.length);
+        for (let i = 0; i < words.length; i++) words[i].style.opacity = i < lit ? '1' : '0.13';
+      }
+      let idx = 0;
+      for (let i = 0; i < sections.length; i++) {
+        const top = sections[i].getBoundingClientRect().top + sy;
+        if (i > 0 && top === 0) continue; // not laid out yet — don't fall through to last
+        if (top <= sy + wh * 0.42) idx = i;
+      }
+      if (cNum) cNum.textContent = String(idx + 1).padStart(2, '0');
+      if (cName) cName.textContent = sections[idx] ? sections[idx].getAttribute('data-name') : '';
+    };
+
+    this.onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    this._onScrollListener = this.onScroll;
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    update();
+    requestAnimationFrame(() => update());
+    setTimeout(update, 250);
+  }
+}
+</script>
+</body>
+</html>
