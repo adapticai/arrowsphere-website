@@ -43,8 +43,8 @@ export default function Hero() {
         {/* Subline with Editorial Serif */}
         <div className="mt-16 max-w-2xl animate-reveal-delayed-2">
           <p className="font-quote text-foreground/70">
-            Backing founders who are redesigning ownership for collective
-            prosperity in the AI-Born era.
+            A family office backing AI-Born companies built to share what they
+            create — a bet that this makes them more durable, not less.
           </p>
         </div>
 

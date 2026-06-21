@@ -14,13 +14,15 @@ const leaders: LeaderProfile[] = [
     id: "mehran-granfar",
     name: "Mehran Granfar",
     title: "General Partner",
-    quote: "The question isn't whether to adopt AI but what values to encode.",
+    quote:
+      "Once a few people can build almost anything, what they choose to build — and who it's for — becomes the whole game.",
   },
   {
     id: "bronwyn-leong",
     name: "Bronwyn Leong",
     title: "Managing Partner",
-    quote: "Individual prosperity is inseparable from collective flourishing.",
+    quote:
+      "Ownership is just governance you can't easily undo. We pay attention to it early, because later is too late.",
   },
 ];
 
@@ -34,7 +36,7 @@ export default function LeadershipPreview() {
         {/* Section Header */}
         <div className="mb-24 lg:mb-32 text-center">
           <span className="font-display-whisper text-foreground/40 block mb-6">
-            Stewards of Capital & Purpose
+            The Partners
           </span>
           <h2 className="font-display-section text-foreground">Leadership</h2>
         </div>

@@ -123,7 +123,7 @@ export default function FoundationPage() {
               </span>
 
               <h2 className="text-2xl lg:text-3xl font-light text-background mb-12 tracking-tight">
-                Individual prosperity is inseparable from collective flourishing
+                Two halves of one wager
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -296,13 +296,13 @@ export default function FoundationPage() {
           <div className="container-luxury">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-2xl lg:text-3xl font-light text-foreground mb-8 tracking-tight">
-                Building Capacity for the Future
+                What the Foundation Is For
               </h2>
 
               <p className="font-body-refined text-foreground/60 mb-12">
-                The Foundation works to strengthen the fabric of community, develop
-                human potential, and build the capacities people need to navigate
-                profound change with clarity and shared purpose.
+                It funds education, community capacity, and the arts — the slow,
+                human work that markets tend to skip, and that a fairer economy
+                quietly depends on.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-8">

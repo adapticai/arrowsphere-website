@@ -27,11 +27,11 @@ const leaders: LeaderProfile[] = [
     title: "General Partner",
     initials: "MG",
     quote:
-      "The question isn't whether to adopt AI but what values to encode. When three people can orchestrate what once required thousands, the choice between concentration and distribution shapes the next century.",
+      "The technology question is mostly answered. The open one is who ends up owning the result — and that gets decided early, or by default.",
     bio: [
-      "Mehran Granfar is a technologist and capital architect who has spent years exploring the profound implications of AI-Born enterprises—organizations where artificial intelligence is not merely adopted but foundational to their structure, operations, and economic philosophy.",
-      'As the author of "AI-Born: The Machine Core, The Human Cortex, and The Next Economy of Being", Mehran has articulated a vision that transcends conventional business transformation narratives.',
-      "Through his role as Founder, CEO, and Chairman of Adaptic Holdings Limited, Mehran is building an AI-native asset management operating system that demonstrates these principles in practice.",
+      "Mehran is the general partner. He wrote AI-Born — the book the firm's thesis grew out of — and spends most of his time on the companies trying to put it into practice.",
+      "He founded and runs Adaptic, an asset manager built to operate on AI rather than around it, and co-founded Future Thesis Lab, where new venture and ownership structures get tested before they become companies.",
+      "He's less interested in whether AI works — that part is settled — than in who ends up owning what it builds.",
     ],
     roles: [
       { title: "Founder, CEO & Chairman", organization: "Adaptic Holdings" },
@@ -51,11 +51,11 @@ const leaders: LeaderProfile[] = [
     title: "Managing Partner",
     initials: "BL",
     quote:
-      "Individual prosperity is inseparable from collective flourishing. That's not ideology—it's architecture.",
+      "You can't talk a company into sharing what it makes. You have to build it into the ownership, before there's anything to fight over.",
     bio: [
-      "Bronwyn Leong serves as Managing Partner of Arrowsphere Holdings Limited, bringing deep expertise in governance structures and the philanthropic frameworks essential to realizing the vision of collective prosperity in an AI-born economy.",
-      "As Co-Founder of the Foundation for Collective Prosperity, Inc., Bronwyn has been instrumental in building the institutional architecture that translates stewardship principles into actionable programs and measurable impact.",
-      "Through her dual roles at Arrowsphere and the Foundation, Bronwyn ensures coherence between commercial innovation and philanthropic purpose.",
+      "Bronwyn is the managing partner. She runs the firm's operations and governance — the unglamorous, decisive part of turning a thesis about ownership into structures that actually hold up.",
+      "She co-founded the Foundation for Collective Prosperity and helps run it, which keeps her working on both sides of the firm's wager: the companies, and the communities they depend on.",
+      "Her standing view is that good intentions are cheap, and structure is what survives them.",
     ],
     roles: [
       { title: "Managing Partner", organization: "Arrowsphere Holdings" },
@@ -80,7 +80,7 @@ export default function LeadershipPage() {
           <div className="container-luxury relative z-10">
             <div className="max-w-4xl">
               <span className="font-display-whisper text-foreground/40 block mb-8">
-                Stewards of Capital & Purpose
+                The Partnership
               </span>
 
               <h1 className="font-display-hero text-foreground leading-[0.9]">
@@ -185,14 +185,15 @@ export default function LeadershipPage() {
           <div className="container-luxury">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-2xl lg:text-3xl font-light text-background mb-8 tracking-tight">
-                A Shared Commitment to Stewardship
+                A Small Firm, by Design
               </h2>
 
               <p className="font-body-refined text-background/50 mb-12">
-                Together, our leadership team brings complementary expertise in
-                technology, capital, governance, and philanthropy. We are united
-                by the conviction that the exponential capabilities AI enables
-                demand exponential responsibility.
+                Arrowsphere is deliberately small — two partners, our own
+                capital, a handful of companies we know well. It's the only way
+                we've found to stay close to the things that actually decide
+                whether a company is worth backing: how it's run, and who it's
+                run for.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-8">

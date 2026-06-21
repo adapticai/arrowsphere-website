@@ -20,21 +20,21 @@ export default function CTA() {
         <div className="max-w-4xl mx-auto text-center">
           {/* Eyebrow */}
           <span className="font-display-whisper text-background/40 block mb-12">
-            The Next Century
+            Talk to Us
           </span>
 
           {/* Main Headline */}
           <h2 className="font-display-section text-background mb-8 leading-tight">
-            Shaping the Architecture
+            Building this way?
             <br />
-            <span className="text-background/40">of Tomorrow</span>
+            <span className="text-background/40">Come talk.</span>
           </h2>
 
           {/* Subtext */}
           <p className="font-body-refined text-background/50 max-w-2xl mx-auto mb-16">
-            The choice between concentration and distribution shapes the next
-            century. We're looking for founders who understand this and are
-            building accordingly.
+            We back a small number of founders building broad ownership into
+            AI-Born companies from the start. If that's what you're building,
+            we'd like to hear from you.
           </p>
 
           {/* CTA Buttons */}

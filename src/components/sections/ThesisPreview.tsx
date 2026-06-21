@@ -13,23 +13,23 @@ const thesisPillars: ThesisPillar[] = [
   {
     number: "01",
     title: "The Lineage Break",
-    subtitle: "Automation of Judgment",
+    subtitle: "What is actually changing",
     description:
-      "AI automates judgment, not just tasks. When three orchestrate what once required thousands, the question shifts from 'what can you produce?' to 'what do you intend?'",
+      "AI is starting to automate judgment, not just labour. As a handful of people can run what once took thousands, the scarce input stops being effort and becomes intent — what gets built, and for whom.",
   },
   {
     number: "02",
-    title: "The Fork in the Road",
-    subtitle: "Concentrated vs. Distributed",
+    title: "Where the Gains Land",
+    subtitle: "Concentration is the default",
     description:
-      "Concentrated power serving few, or distributed prosperity serving many. Current ownership defaults will scale unchanged unless we build alternatives.",
+      "Left alone, AI's gains concentrate — the same equity and shareholder defaults we already have, now scaled by far fewer people. Spreading them doesn't happen on its own; it has to be designed in early, or not at all.",
   },
   {
     number: "03",
     title: "Stewardship as Strategy",
-    subtitle: "Resilience Through Distribution",
+    subtitle: "An edge, not a tax",
     description:
-      "Distributed governance builds resilience; concentrated ownership creates brittleness. Individual prosperity is inseparable from collective flourishing.",
+      "Companies owned by the people who build and use them are harder to hollow out, hold talent longer, and keep their mission when capital changes hands. We treat that durability as the return, not a trade-off against it.",
   },
 ];
 
@@ -53,9 +53,10 @@ export default function ThesisPreview() {
 
           <div className="lg:col-span-6 lg:col-start-7">
             <p className="font-body-refined text-foreground/60 max-w-xl">
-              We invest in competitive, for-profit ventures architectured from
-              day one to distribute value broadly—because individual prosperity
-              is inseparable from collective flourishing.
+              We invest in for-profit companies designed, from the first cap
+              table, to spread ownership and returns beyond a few shareholders —
+              a wager that broadly held companies prove harder to capture, and
+              outlast the narrowly held ones.
             </p>
           </div>
         </div>
