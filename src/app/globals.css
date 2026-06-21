@@ -8,6 +8,27 @@ html {
   scroll-padding-top: 80px;
 }
 
+/* Contact form fields (used on the dark Connect section) */
+.contact-field {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid color-mix(in oklab, #ffffff 22%, transparent);
+  border-radius: 0;
+  padding: 0.85rem 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.4s ease;
+}
+.contact-field::placeholder {
+  color: color-mix(in oklab, #ffffff 36%, transparent);
+}
+.contact-field:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    ARROWSPHERE HOLDINGS — LUXURY FASHION HOUSE AESTHETIC
    Inspired by: Bottega Veneta, Balenciaga, Louis Vuitton

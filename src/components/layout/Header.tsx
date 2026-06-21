@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/ThemeProvider";
 import { ArrowsphereLogo } from "@/components/ArrowsphereLogo";
 
 const NAV = [
@@ -13,29 +13,36 @@ const NAV = [
 
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  if (!mounted)
-    return <span aria-hidden style={{ width: 15, height: 15, display: "inline-block" }} />;
   const dark = resolvedTheme === "dark";
   return (
     <button
       type="button"
       aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
       onClick={() => setTheme(dark ? "light" : "dark")}
-      className="text-foreground/50 hover:text-foreground transition-colors duration-500"
-      style={{ display: "inline-flex", alignItems: "center" }}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        padding: 6,
+        marginLeft: "0.4rem",
+        color: "var(--foreground)",
+      }}
     >
-      {dark ? (
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" strokeLinecap="round" />
-        </svg>
-      ) : (
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
-          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" strokeLinejoin="round" />
-        </svg>
-      )}
+      <span
+        aria-hidden
+        style={{
+          display: "block",
+          width: 13,
+          height: 13,
+          borderRadius: "50%",
+          border: "1px solid var(--foreground)",
+          background: "linear-gradient(90deg, var(--foreground) 50%, transparent 50%)",
+          transform: dark ? "rotate(180deg)" : "rotate(0deg)",
+          transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1)",
+        }}
+      />
     </button>
   );
 }
