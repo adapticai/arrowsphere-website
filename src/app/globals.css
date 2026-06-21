@@ -597,3 +597,8 @@
   outline: 1px solid var(--foreground);
   outline-offset: 4px;
 }
+
+/* Brand logo: dark artwork by default; invert to light in dark mode */
+.dark .brand-logo {
+  filter: invert(1);
+}

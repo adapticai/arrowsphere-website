@@ -49,10 +49,21 @@ export default function Header() {
         <div className="container-luxury">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="group relative">
-              <span className="font-display-whisper tracking-[0.3em] text-foreground transition-opacity duration-500 group-hover:opacity-60">
-                Arrowsphere
-              </span>
+            <Link
+              href="/"
+              className="group relative flex items-center"
+              aria-label="Arrowsphere — Home"
+            >
+              <img
+                src="/arrowsphere-full-logo.svg"
+                alt="Arrowsphere"
+                className="brand-logo hidden h-6 w-auto transition-opacity duration-500 group-hover:opacity-60 sm:block"
+              />
+              <img
+                src="/arrowsphere-icon.svg"
+                alt="Arrowsphere"
+                className="brand-logo h-7 w-auto transition-opacity duration-500 group-hover:opacity-60 sm:hidden"
+              />
             </Link>
 
             {/* Desktop Navigation */}

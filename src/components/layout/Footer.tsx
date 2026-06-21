@@ -39,10 +39,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-4">
-            <Link href="/" className="inline-block mb-8">
-              <span className="font-display-whisper tracking-[0.3em] text-foreground">
-                Arrowsphere
-              </span>
+            <Link href="/" className="inline-block mb-8" aria-label="Arrowsphere — Home">
+              <img
+                src="/arrowsphere-logo.svg"
+                alt="Arrowsphere"
+                className="brand-logo h-6 w-auto"
+              />
             </Link>
 
             <p className="font-body-refined text-foreground/50 max-w-sm mb-8">
